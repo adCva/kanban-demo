@@ -1,0 +1,40 @@
+.logo-wrapper {
+    display: flex;
+    align-items: flex-end;
+    gap: 0.35rem;
+
+    .lines-container {
+        display: flex;
+        
+        .line {
+            background-color: #635fc7;
+            width: 7px;
+            height: 23px;
+            margin-right: 2px;
+            border-radius: 2px;
+
+            &:nth-child(2) {
+                background-color: #8a87d5;
+            }
+            
+            &:nth-child(3) {
+                background-color: #b1afe3;
+                margin-right: 0;
+            }
+        }
+    }
+
+    h1 {
+        font-size: 1.35rem;
+        font-weight: $main-font-bold;
+        letter-spacing: 0.5px;
+        color: $almost-white;
+        transition: color $transition-traits;
+    }
+
+    &.logo-wrapper-light {
+        h1 {
+            color: $black;
+        }
+    }
+}

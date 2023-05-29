@@ -1,0 +1,32 @@
+.App {
+    @include theme('dark');
+    @include colorTransition;
+    display: flex;
+
+    &.App-light {
+        @include theme('light');
+    }
+
+    .sidebar-container {
+        background-color: red;
+        min-width: 250px;
+        position: sticky;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        transition: transform $transition-traits;
+        transform: translateX(0);
+
+        &.sidebar-container-hide {
+            transform: translateX(-100%);
+        }
+
+        h1 {
+            position: fixed;
+        }
+    }
+
+    .content-container {
+        display: flex;
+    }
+}

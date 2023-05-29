@@ -1,0 +1,60 @@
+// ======= Typography.
+$main-font: 'Roboto Condensed', sans-serif;
+$main-font-light: 300;
+$main-font-regular: 400;
+$main-font-bold: 700;
+
+
+// ======= Dark Theme Colors.
+$very-dark-blue: #22222e;
+$dark-grayish-blue: #2c2c36;
+$medium-gray: #777a89;
+$almost-white: #fafbff;
+$dark-theme-purple: #655fb7;
+
+
+// ======= Light Theme Colors.
+$ghost-white: #f4f7ff;
+$white: #ffffff;
+$alice-blue: #e8f0fb;
+$light-theme-purple: #615fa0;
+$black: #161518;
+$gray: #aeafb0;
+
+
+// ======= General Colors.
+$skyblue: #70c2ce;
+$medium-purple: #8479c8;
+$turquoise: #90cdbd;
+$red: #ef7c8e;
+
+
+// ======= Others.
+$transition-traits: 0.25s ease-in-out;
+
+
+// ======= Mixing.
+@mixin theme($theme) {
+    @if $theme == 'dark' {
+        background-color: $very-dark-blue;
+        color: $almost-white;
+        transition-property: background-color, color;
+        transition-duration: 0.25s;
+        transition-timing-function: ease-in-out;
+    } @else if $theme == 'light' {
+        background-color: $ghost-white;
+        color: $black;
+        transition-property: background-color, color;
+        transition-duration: 0.25s;
+        transition-timing-function: ease-in-out;
+    } @else {
+        @error "Invalid theme.";
+    }
+}
+
+
+@mixin colorTransition() {
+    transition-property: background-color, color;
+    transition-duration: 0.25s;
+    transition-timing-function: ease-in-out;
+}

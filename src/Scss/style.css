@@ -1,0 +1,74 @@
+.App {
+  background-color: #22222e;
+  color: #fafbff;
+  transition-property: background-color, color;
+  transition-duration: 0.25s;
+  transition-timing-function: ease-in-out;
+  transition-property: background-color, color;
+  transition-duration: 0.25s;
+  transition-timing-function: ease-in-out;
+  display: flex;
+}
+.App.App-light {
+  background-color: #f4f7ff;
+  color: #161518;
+  transition-property: background-color, color;
+  transition-duration: 0.25s;
+  transition-timing-function: ease-in-out;
+}
+.App .sidebar-container {
+  background-color: red;
+  min-width: 250px;
+  position: sticky;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  transition: transform 0.25s ease-in-out;
+  transform: translateX(0);
+}
+.App .sidebar-container.sidebar-container-hide {
+  transform: translateX(-100%);
+}
+.App .sidebar-container h1 {
+  position: fixed;
+}
+.App .content-container {
+  display: flex;
+}
+
+.logo-wrapper {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.35rem;
+}
+.logo-wrapper .lines-container {
+  display: flex;
+}
+.logo-wrapper .lines-container .line {
+  background-color: #635fc7;
+  width: 7px;
+  height: 23px;
+  margin-right: 2px;
+  border-radius: 2px;
+}
+.logo-wrapper .lines-container .line:nth-child(2) {
+  background-color: #8a87d5;
+}
+.logo-wrapper .lines-container .line:nth-child(3) {
+  background-color: #b1afe3;
+  margin-right: 0;
+}
+.logo-wrapper h1 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: #fafbff;
+  transition: color 0.25s ease-in-out;
+}
+.logo-wrapper.logo-wrapper-light h1 {
+  color: #161518;
+}
+
+body {
+  font-family: "Roboto Condensed", sans-serif;
+}/*# sourceMappingURL=style.css.map */
