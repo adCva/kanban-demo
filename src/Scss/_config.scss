@@ -6,15 +6,15 @@ $main-font-bold: 700;
 
 
 // ======= Dark Theme Colors.
-$very-dark-blue: #22222e;
-$dark-grayish-blue: #2c2c36;
+$very-dark-blue: #222222;
+$dark-grayish-blue: #16171b;
 $medium-gray: #777a89;
 $almost-white: #fafbff;
 $dark-theme-purple: #655fb7;
 
 
 // ======= Light Theme Colors.
-$ghost-white: #f4f7ff;
+$ghost-white: #e9edfd;
 $white: #ffffff;
 $alice-blue: #e8f0fb;
 $light-theme-purple: #615fa0;
@@ -27,6 +27,12 @@ $skyblue: #70c2ce;
 $medium-purple: #8479c8;
 $turquoise: #90cdbd;
 $red: #ef7c8e;
+
+
+// ======= Not Decided Yet.
+$blue1: #165aec;
+$blue2: #4c9dfa;
+$blue3: #98c4ff;
 
 
 // ======= Others.
@@ -57,4 +63,15 @@ $transition-traits: 0.25s ease-in-out;
     transition-property: background-color, color;
     transition-duration: 0.25s;
     transition-timing-function: ease-in-out;
+}
+
+
+@keyframes loadingLines {
+    0% {
+        transform: scaleY(0.3);
+    } 50% {
+        transform: scaleY(1);
+    } 100% {
+        transform: scaleY(0.3);
+    }
 }

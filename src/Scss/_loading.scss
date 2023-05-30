@@ -1,0 +1,26 @@
+.lines-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 12.5rem;
+
+    .line {
+        background-color: #635fc7;
+        width: 0.6rem;
+        height: 2.8rem;
+        margin: 0 3px;
+        border-radius: 10px;
+        transform-origin: bottom;
+        animation: loadingLines 1.75s ease-in-out infinite;
+
+        &:nth-child(2) {
+            background-color: #8a87d5;
+            animation-delay: 0.2s;
+        }
+
+        &:nth-child(3) {
+            background-color: #b1afe3;
+            animation-delay: 0.5s;
+        }
+    }
+}

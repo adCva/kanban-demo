@@ -1,40 +1,58 @@
-.logo-wrapper {
+.logo-icon-wrapper{
+    &.logo-icon-wrapper-light {
+        h1 {
+            color: $black;
+        }
+    }
+
     display: flex;
     align-items: flex-end;
-    gap: 0.35rem;
+    gap: 0.5rem;
+
 
     .lines-container {
         display: flex;
-        
-        .line {
-            background-color: #635fc7;
+        align-items: flex-end;
+        height: 27px;
+
+        @media (min-width: 768px) {
+            height: 0px;
+        }
+
+        .logo-line {
+            background-color: #165aec;
             width: 7px;
-            height: 23px;
-            margin-right: 2px;
+            height: 27px;
+            margin-right: 3px;
             border-radius: 2px;
 
             &:nth-child(2) {
-                background-color: #8a87d5;
+                background-color: #4c9dfa;
             }
-            
+
             &:nth-child(3) {
-                background-color: #b1afe3;
+                background-color: #98c4ff;
                 margin-right: 0;
+            }
+
+            @media (min-width: 768px) {
+                height: 28.5px;
+                margin-right: 4px;
             }
         }
     }
 
-    h1 {
-        font-size: 1.35rem;
+
+    .logo-name {
+        color: $almost-white;
         font-weight: $main-font-bold;
         letter-spacing: 0.5px;
-        color: $almost-white;
         transition: color $transition-traits;
-    }
+        display: none;
 
-    &.logo-wrapper-light {
-        h1 {
-            color: $black;
+        @media (min-width: 768px) {
+            display: inline-block;
+            font-size: 1.55rem;
         }
     }
 }
