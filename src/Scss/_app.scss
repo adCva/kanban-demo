@@ -5,6 +5,7 @@
     flex-direction: column;
     min-height: 100vh;
     min-height: 100dvh;
+    position: relative;
 
     @media (min-width: 800px) {
         flex-direction: row;
@@ -17,12 +18,9 @@
     .left-container {
         @media (min-width: 800px) {
             min-width: 250px;
-            position: sticky;
-            top: 0;
-            left: 0;
-            bottom: 0;
+
             transition: transform $transition-traits;
-            transform: translateX(0);
+            transform: translateX(0%);
     
             &.left-container-hide {
                 transform: translateX(-100%);
@@ -31,6 +29,7 @@
     }
 
     .right-container {
-        display: flex;
+        flex-grow: 1;
+        margin-left: 0;
     }
 }

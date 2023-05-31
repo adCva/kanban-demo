@@ -22,6 +22,7 @@
   flex-direction: column;
   min-height: 100vh;
   min-height: 100dvh;
+  position: relative;
 }
 @media (min-width: 800px) {
   .App {
@@ -38,19 +39,16 @@
 @media (min-width: 800px) {
   .App .left-container {
     min-width: 250px;
-    position: sticky;
-    top: 0;
-    left: 0;
-    bottom: 0;
     transition: transform 0.25s ease-in-out;
-    transform: translateX(0);
+    transform: translateX(0%);
   }
   .App .left-container.left-container-hide {
     transform: translateX(-100%);
   }
 }
 .App .right-container {
-  display: flex;
+  flex-grow: 1;
+  margin-left: 0;
 }
 
 .logo-icon-wrapper {
@@ -132,7 +130,179 @@
 .sidebar-wrapper {
   background-color: #16171b;
 }
+@media (min-width: 1000px) {
+  .sidebar-wrapper {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    min-width: 250px;
+  }
+}
+.sidebar-wrapper .sidebar-content-wrapper {
+  background-color: rgba(0, 0, 0, 0.6);
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+@media (min-width: 1000px) {
+  .sidebar-wrapper .sidebar-content-wrapper {
+    all: unset;
+  }
+}
+.sidebar-wrapper .sidebar-content-wrapper .sidebar-content-container {
+  background-color: #16171b;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 90%;
+}
+.sidebar-wrapper .sidebar-content-wrapper .sidebar-content-container .boards-list-container h1 {
+  color: #fbfcfc;
+  font-size: 0.95rem;
+  font-weight: 700;
+  display: block;
+  padding: 1.5rem 1.5rem;
+  transition-property: background-color, color;
+  transition-duration: 0.25s;
+  transition-timing-function: ease-in-out;
+}
+.sidebar-wrapper .sidebar-content-wrapper .sidebar-content-container .boards-list-container .boards-list {
+  display: grid;
+  gap: 0.5rem;
+  max-height: 200px;
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+.sidebar-wrapper .sidebar-content-wrapper .sidebar-content-container .boards-list-container .boards-list::-webkit-scrollbar {
+  display: none;
+}
+@media (min-width: 1000px) {
+  .sidebar-wrapper .sidebar-content-wrapper .sidebar-content-container .boards-list-container .boards-list {
+    max-height: 400px;
+  }
+}
+.sidebar-wrapper .sidebar-content-wrapper .sidebar-content-container .boards-list-container .boards-list .board-btn {
+  background: transparent;
+  color: #777a89;
+  letter-spacing: 1px;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.5rem 1.5rem;
+  cursor: pointer;
+  word-wrap: break-word;
+  width: 90%;
+}
+.sidebar-wrapper .sidebar-content-wrapper .sidebar-content-container .boards-list-container .boards-list .board-btn.active-board-btn {
+  background-color: #4c9dfa;
+  color: #fafbff;
+  border-top-right-radius: 45px;
+  border-bottom-right-radius: 45px;
+}
+.sidebar-wrapper .sidebar-content-wrapper .sidebar-content-container .boards-list-container .boards-list .board-btn span {
+  font-size: 1rem;
+}
+@media (min-width: 768px) {
+  .sidebar-wrapper .sidebar-content-wrapper .sidebar-content-container .boards-list-container .boards-list .board-btn span {
+    font-size: 1.2rem;
+  }
+}
+.sidebar-wrapper .sidebar-content-wrapper .sidebar-content-container .boards-list-container .new-board-btn {
+  background: transparent;
+  color: #ffffff;
+  font-size: 0.95rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  letter-spacing: 1px;
+  margin-top: 0.5rem;
+  padding: 1rem 1.5rem;
+  cursor: pointer;
+}
+.sidebar-wrapper .sidebar-content-wrapper .sidebar-content-container .boards-list-container .new-board-btn span {
+  font-size: 1rem;
+}
+@media (min-width: 768px) {
+  .sidebar-wrapper .sidebar-content-wrapper .sidebar-content-container .boards-list-container .new-board-btn span {
+    font-size: 1.2rem;
+  }
+}
+.sidebar-wrapper .sidebar-content-wrapper .sidebar-content-container .theme-btn-wrapper {
+  margin: 1.5rem 0;
+  padding: 0 1rem;
+}
+.sidebar-wrapper .sidebar-content-wrapper .sidebar-content-container .theme-btn-wrapper .theme-btn-container {
+  background: #fafbff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.35rem;
+  padding: 0.65rem 0;
+  border-radius: 10px;
+  width: 100%;
+}
+.sidebar-wrapper .sidebar-content-wrapper .sidebar-content-container .theme-btn-wrapper .theme-btn-container dfn {
+  background: transparent;
+  color: #777a89;
+}
+.sidebar-wrapper .sidebar-content-wrapper .sidebar-content-container .theme-btn-wrapper .theme-btn-container dfn:first-of-type {
+  font-size: 1.2rem;
+}
+.sidebar-wrapper .sidebar-content-wrapper .sidebar-content-container .theme-btn-wrapper .theme-btn-container .theme-switcher {
+  display: inline-block;
+  position: relative;
+  width: 40px;
+  height: 20px;
+  background: #98c4ff;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+.sidebar-wrapper .sidebar-content-wrapper .sidebar-content-container .theme-btn-wrapper .theme-btn-container .theme-switcher .theme-btn {
+  position: absolute;
+  left: 3px;
+  top: 3px;
+  width: 14px;
+  height: 14px;
+  background: #fafbff;
+  border-radius: 50%;
+  transition: all 0.3s ease-in-out;
+}
+.sidebar-wrapper .sidebar-content-wrapper .sidebar-content-container .theme-btn-wrapper .theme-btn-container .theme-switcher .theme-btn-right {
+  left: 22px;
+}
+.sidebar-wrapper .sidebar-content-wrapper .sidebar-content-container .theme-btn-wrapper .hide-sidebar-btn {
+  background: transparent;
+  color: #777a89;
+  display: none;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  letter-spacing: -0.3px;
+  margin-top: 0.5rem;
+  cursor: pointer;
+  transition: color 0.25s ease-in-out;
+}
+.sidebar-wrapper .sidebar-content-wrapper .sidebar-content-container .theme-btn-wrapper .hide-sidebar-btn:hover {
+  color: #484952;
+}
+@media (min-width: 1000px) {
+  .sidebar-wrapper .sidebar-content-wrapper .sidebar-content-container .theme-btn-wrapper .hide-sidebar-btn {
+    display: flex;
+  }
+}
 .sidebar-wrapper.sidebar-wrapper-light {
+  background-color: #ffffff;
+}
+.sidebar-wrapper.sidebar-wrapper-light .sidebar-content-wrapper .sidebar-content-container {
   background-color: #ffffff;
 }
 

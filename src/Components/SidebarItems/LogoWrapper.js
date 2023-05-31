@@ -9,14 +9,10 @@ import { IoIosAdd } from "react-icons/io";
 import { TiDelete } from "react-icons/ti";
 import { HiEllipsisVertical } from "react-icons/hi2";
 
-function LogoWrapper() {
+function LogoWrapper({isMobileCardOpen, onValueToggle, darkTheme }) {
     const dispatch = useDispatch();
 
-    // ===== Redux state.
-    const isDarkMode = useSelector((state) => state.ux.darkMode);
-
     // ===== Local state.
-    const [isMobileCard, setIsMobileCard] = useState(true);
     const [isDropdown, setIsDropdown] = useState(false);
 
     // ===== Ref.
@@ -29,6 +25,11 @@ function LogoWrapper() {
         }
     };
 
+    // ===== Callback for parent state value.
+    const handleMobileCardChange = () => {
+        onValueToggle();
+    }
+
     useEffect(() => {
         document.addEventListener("click", closeDropdownOutsideClick);
 
@@ -38,11 +39,11 @@ function LogoWrapper() {
     })
 
     return (
-        <div className={isDarkMode ? "logo-wrapper" : "logo-wrapper logo-wrapper-light"}>
+        <div className={darkTheme ? "logo-wrapper" : "logo-wrapper logo-wrapper-light"}>
             <div className='logo-container'>
                 <Logo />
                 <h2>Current Board</h2>
-                <button className='logo-open-btn' onClick={() => setIsMobileCard(!isMobileCard)} >{isMobileCard ? <BiChevronDown /> : <BiChevronUp />}</button>
+                <button className='logo-open-btn' onClick={handleMobileCardChange} >{isMobileCardOpen ? <BiChevronDown /> : <BiChevronUp />}</button>
             </div>
             <div className='logo-mobile-btns'>
                 <button className='logo-mobile-add'><IoIosAdd /></button>
