@@ -15,14 +15,13 @@ function App() {
   return (
     <div className={isDarkMode ? "App" : "App App-light"} >
 
-      <div className={isSidebarHidden ? "left-container left-container-hide" : "left-container"}>
+      <div className={`sidebar-component-container ${isSidebarHidden ? "hidden" : ""}`}>
         <Sidebar />
       </div>
-      
-      <div className="right-container">
-        <button className='hide-sidebar-btn' onClick={() => dispatch(hideSidebar())}>Show Sidebar</button>
+
+      <div className={`main-content-container ${isSidebarHidden ? "wide" : ""}`}>
+        <button onClick={() => dispatch(hideSidebar())}>Sidebar hide/show</button>
       </div>
-      
 
     </div>
   );

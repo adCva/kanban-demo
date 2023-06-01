@@ -1,35 +1,48 @@
 .App {
-    @include theme('dark');
-    @include colorTransition;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    min-height: 100dvh;
-    position: relative;
-
-    @media (min-width: 800px) {
-        flex-direction: row;
-    }
-
     &.App-light {
         @include theme('light');
     }
 
-    .left-container {
-        @media (min-width: 800px) {
-            min-width: 250px;
+    @include theme('dark');
+    @include colorTransition;
+    position: relative;
+    min-height: 100vh;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
 
-            transition: transform $transition-traits;
-            transform: translateX(0%);
-    
-            &.left-container-hide {
-                transform: translateX(-100%);
+    @media (min-width: 1000px) {
+        flex-direction: row;
+    }
+
+
+    .sidebar-component-container {
+        transition: transform $transition-traits;
+
+        @media (min-width: 1000px) {
+            position: sticky;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            width: 250px;
+            min-height: 100vh;
+            min-height: 100dvh;
+            background-color: red;
+
+            &.hidden {
+                transform: translateX(-100%)
             }
         }
     }
 
-    .right-container {
-        flex-grow: 1;
+
+    .main-content-container {
         margin-left: 0;
+        padding: 2rem;
+        transition: margin-left $transition-traits;
+
+        &.wide {
+            margin-left: -250px;
+        }
     }
 }

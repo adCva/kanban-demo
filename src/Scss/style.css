@@ -18,16 +18,11 @@
   transition-property: background-color, color;
   transition-duration: 0.25s;
   transition-timing-function: ease-in-out;
-  display: flex;
-  flex-direction: column;
+  position: relative;
   min-height: 100vh;
   min-height: 100dvh;
-  position: relative;
-}
-@media (min-width: 800px) {
-  .App {
-    flex-direction: row;
-  }
+  display: flex;
+  flex-direction: column;
 }
 .App.App-light {
   background-color: #e9edfd;
@@ -36,19 +31,36 @@
   transition-duration: 0.25s;
   transition-timing-function: ease-in-out;
 }
-@media (min-width: 800px) {
-  .App .left-container {
-    min-width: 250px;
-    transition: transform 0.25s ease-in-out;
-    transform: translateX(0%);
+@media (min-width: 1000px) {
+  .App {
+    flex-direction: row;
   }
-  .App .left-container.left-container-hide {
+}
+.App .sidebar-component-container {
+  transition: transform 0.25s ease-in-out;
+}
+@media (min-width: 1000px) {
+  .App .sidebar-component-container {
+    position: sticky;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 250px;
+    min-height: 100vh;
+    min-height: 100dvh;
+    background-color: red;
+  }
+  .App .sidebar-component-container.hidden {
     transform: translateX(-100%);
   }
 }
-.App .right-container {
-  flex-grow: 1;
+.App .main-content-container {
   margin-left: 0;
+  padding: 2rem;
+  transition: margin-left 0.25s ease-in-out;
+}
+.App .main-content-container.wide {
+  margin-left: -250px;
 }
 
 .logo-icon-wrapper {
@@ -136,7 +148,9 @@
     top: 0;
     bottom: 0;
     left: 0;
-    min-width: 250px;
+    width: 250px;
+    min-height: 100vh;
+    min-height: 100dvh;
   }
 }
 .sidebar-wrapper .sidebar-content-wrapper {
@@ -161,7 +175,11 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 90%;
+}
+@media (min-width: 1000px) {
+  .sidebar-wrapper .sidebar-content-wrapper .sidebar-content-container {
+    height: 90%;
+  }
 }
 .sidebar-wrapper .sidebar-content-wrapper .sidebar-content-container .boards-list-container h1 {
   color: #fbfcfc;

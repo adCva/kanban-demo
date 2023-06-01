@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useTransition, animated } from '@react-spring/web';
 // ===== Redux.
 import { useSelector, useDispatch } from 'react-redux';
@@ -16,7 +16,7 @@ function Sidebar() {
   const isDarkMode = useSelector((state) => state.ux.darkMode);
 
   // ===== Local state.
-  const [isMobileCard, setIsMobileCard] = useState(true);
+  const [isMobileCard, setIsMobileCard] = useState(false);
 
   // ===== React Spring Transition.
   const transition = useTransition(isMobileCard, {
@@ -29,6 +29,22 @@ function Sidebar() {
   const handleMobileValueToggle  = () => {
     setIsMobileCard(!isMobileCard);
   };
+
+  // ===== Close boards modal on outside click.
+  const closeBoardModalOutsideClick = (event) => {
+    if (isMobileCard && event.target.className === "sidebar-content-wrapper") {
+      setIsMobileCard(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("click", closeBoardModalOutsideClick);
+
+    return () => {
+      document.removeEventListener("click", closeBoardModalOutsideClick);
+    }
+  })
+
 
   return (
     <div className={isDarkMode ? "sidebar-wrapper" : "sidebar-wrapper sidebar-wrapper-light"}>
