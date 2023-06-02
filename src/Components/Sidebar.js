@@ -37,13 +37,29 @@ function Sidebar() {
     }
   };
 
+  // ===== Change isMobileCard value when resizing.
+  const displayContentBigScreen = () => {
+    if (window.innerWidth > 1000) {
+      setIsMobileCard(true);
+    } else {
+      setIsMobileCard(false);
+    }
+  };
+
   useEffect(() => {
+    // Change isMobileCard value when loading page on bigger screens.
+    if (window.innerWidth > 1000) {
+      setIsMobileCard(true);
+    }
+
     document.addEventListener("click", closeBoardModalOutsideClick);
+    window.addEventListener("resize", displayContentBigScreen);
 
     return () => {
       document.removeEventListener("click", closeBoardModalOutsideClick);
+      window.removeEventListener("resize", displayContentBigScreen);
     }
-  })
+  }, [isMobileCard])
 
 
   return (
