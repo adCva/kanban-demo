@@ -34,8 +34,20 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            min-width: 250px;
+
+            @media (min-width: 411px) {
+                min-width: 300px;
+                min-height: 400px;
+            }
+
+            @media (min-width: 768px) {
+                min-width: 350px;
+            }
 
             @media (min-width: 1000px) {
+                min-width: auto;
+                min-height: auto;
                 height: 90%;
             }
 
@@ -45,11 +57,15 @@
 
                 h1 {
                     color: lighten($gray, 30%);
-                    font-size: 0.95rem;
                     font-weight: $main-font-bold;
+                    letter-spacing: 0.5px;
                     display: block;
                     padding: 1.5rem 1.5rem;
                     @include colorTransition;
+
+                    @media (min-width: 768px) {
+                        font-size: 1.05rem;
+                    }
                 }
 
 
@@ -70,18 +86,20 @@
                     .board-btn {
                         background: transparent;
                         color: $medium-gray;
+                        font-size: 0.95rem;
                         letter-spacing: 1px;
                         display: flex;
                         align-items: center;
                         gap: 0.7rem;
-                        padding: 0.5rem 1.5rem;
+                        padding: 0.7rem 1.5rem;
                         cursor: pointer;
                         word-wrap: break-word;
                         width: 90%;
+                        transition: all $transition-traits;
 
                         &.active-board-btn {
-                            background-color: $blue2;
-                            color: $almost-white;
+                            background-color: $ghost-white;
+                            color: $black;
                             border-top-right-radius: 45px;
                             border-bottom-right-radius: 45px;
                         }
@@ -125,7 +143,7 @@
                 padding: 0 1rem;
 
                 .theme-btn-container {
-                    background: $almost-white;
+                    background: $very-dark-blue;
                     display: flex;
                     justify-content: center;
                     align-items: center;
@@ -148,7 +166,7 @@
                         position: relative;
                         width: 40px;
                         height: 20px;
-                        background: $blue3;
+                        background: $dark-grayish-blue;
                         border-radius: 10px;
                         cursor: pointer;
                         transition: all 0.3s ease-in-out;
@@ -201,6 +219,45 @@
         .sidebar-content-wrapper {
             .sidebar-content-container {
                 background-color: $white;
+
+                .boards-list-container {
+                    h1 {
+                        color: darken($gray, 30%);
+                    }
+                
+                    .boards-list {
+                        .board-btn {
+                            color: $medium-gray;
+                
+                            &.active-board-btn {
+                                background-color: $dark-theme-purple;
+                                color: $white;
+                            }
+                        }
+                    }
+
+                    .new-board-btn {
+                        color: darken($gray, 30%);
+                    }
+                }
+                
+                .theme-btn-wrapper {
+                    .theme-btn-container {
+                        background: $ghost-white;
+                
+                        .theme-switcher {
+                            background: $white;
+                
+                            .theme-btn {
+                                background: #333333;
+                            }
+                        }
+                    }
+                
+                    .hide-sidebar-btn {
+                        color: $medium-gray;
+                    }
+                }
             }
         }
     }
