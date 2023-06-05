@@ -20,18 +20,18 @@
         }
 
         .logo-line {
-            background-color: #ff5400;
+            background-color: #534fc4;
             width: 7px;
             height: 27px;
             margin-right: 3px;
             border-radius: 2px;
 
             &:nth-child(2) {
-                background-color: #2dc653;
+                background-color: #8784d4;
             }
 
             &:nth-child(3) {
-                background-color: #00b4d8;
+                background-color: #bdbce6;
                 margin-right: 0;
             }
 
@@ -45,10 +45,12 @@
 
     .logo-name {
         color: $almost-white;
+        font-family: 'Alata', sans-serif;
         font-weight: $main-font-bold;
         letter-spacing: 0.5px;
         transition: color $transition-traits;
         display: none;
+
 
         @media (min-width: 768px) {
             display: inline-block;

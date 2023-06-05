@@ -1,0 +1,40 @@
+.empty-board-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    min-height: calc(100vh - 4.3rem);
+    @include colorTransition;
+
+    h1 {
+        color: $almost-white;
+        font-size: 1.1rem;
+        letter-spacing: 0.5px;
+        @include colorTransition;
+    }
+
+    button {
+        background-color: $almost-white;
+        color: $very-dark-blue;
+        font-size: 0.9rem;
+        font-weight: $main-font-bold;
+        letter-spacing: 1px;
+        padding: 0.75rem 1.2rem;
+        border-radius: 10px;
+        cursor: pointer;
+        @include colorTransition;
+    }
+
+
+    &.empty-board-container-light {
+        h1 {
+            color: darken($gray, 25%);
+        }
+
+        button {
+            background-color: $light-theme-purple;
+            color: $white;
+        }
+    }
+}

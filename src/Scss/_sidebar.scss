@@ -1,6 +1,6 @@
 .sidebar-wrapper {
     background-color: $dark-grayish-blue;
-    
+
     @media (min-width: 1000px) {
         position: fixed;
         top: 0;
@@ -10,9 +10,9 @@
         min-height: 100vh;
         min-height: 100dvh;
     }
-    
-    
 
+
+    // ===================== Content Wrapper.
     .sidebar-content-wrapper {
         background-color: rgba(0, 0, 0, 0.6);
         position: fixed;
@@ -29,12 +29,15 @@
             all: unset;
         }
 
+
+        // ===================== Content Container.
         .sidebar-content-container {
             background-color: $dark-grayish-blue;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             min-width: 250px;
+            border-radius: 10px;
 
             @media (min-width: 411px) {
                 min-width: 300px;
@@ -52,20 +55,17 @@
             }
 
 
+            // ===================== Boards List.
             .boards-list-container {
-                
+                margin-top: 1rem;
 
                 h1 {
                     color: lighten($gray, 30%);
+                    font-size: 0.95rem;
                     font-weight: $main-font-bold;
-                    letter-spacing: 0.5px;
-                    display: block;
-                    padding: 1.5rem 1.5rem;
+                    letter-spacing: 1px;
+                    padding: 0.5rem 1.5rem 1.5rem;
                     @include colorTransition;
-
-                    @media (min-width: 768px) {
-                        font-size: 1.05rem;
-                    }
                 }
 
 
@@ -83,6 +83,7 @@
                         max-height: 400px;
                     }
 
+
                     .board-btn {
                         background: transparent;
                         color: $medium-gray;
@@ -91,11 +92,18 @@
                         display: flex;
                         align-items: center;
                         gap: 0.7rem;
-                        padding: 0.7rem 1.5rem;
+                        padding: 0.85rem 1.4rem;
                         cursor: pointer;
-                        word-wrap: break-word;
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
                         width: 90%;
                         transition: all $transition-traits;
+
+                        @media (min-width: 1000px) {
+                            padding: 0.65rem 1.4rem;
+                            font-size: 0.9rem;
+                        }
 
                         &.active-board-btn {
                             background-color: $ghost-white;
@@ -103,6 +111,7 @@
                             border-top-right-radius: 45px;
                             border-bottom-right-radius: 45px;
                         }
+
 
                         span {
                             font-size: 1rem;
@@ -114,10 +123,11 @@
                     }
                 }
 
+
                 .new-board-btn {
                     background: transparent;
-                    color: $white;
-                    font-size: 0.95rem;
+                    color: $dark-theme-purple;
+                    font-size: 0.9rem;
                     font-weight: $main-font-bold;
                     display: flex;
                     align-items: center;
@@ -126,21 +136,20 @@
                     margin-top: 0.5rem;
                     padding: 1rem 1.5rem;
                     cursor: pointer;
+                    transition: color $transition-traits;
 
                     span {
                         font-size: 1rem;
-
-                        @media (min-width: 768px) {
-                            font-size: 1.2rem;
-                        }
                     }
                 }
             }
 
 
+            // ===================== Theme Button.
             .theme-btn-wrapper {
                 margin: 1.5rem 0;
                 padding: 0 1rem;
+
 
                 .theme-btn-container {
                     background: $very-dark-blue;
@@ -148,45 +157,49 @@
                     justify-content: center;
                     align-items: center;
                     gap: 1.35rem;
+                    width: 100%;
                     padding: 0.65rem 0;
                     border-radius: 10px;
-                    width: 100%;
+
 
                     dfn {
                         background: transparent;
-                        color: $medium-gray;
+                        color: $almost-white;
 
                         &:first-of-type {
-                            font-size: 1.2rem;
+                            font-size: 1.3rem;
                         }
                     }
 
+
                     .theme-switcher {
-                        display: inline-block;
                         position: relative;
+                        background: $almost-white;
+                        display: inline-block;
                         width: 40px;
                         height: 20px;
-                        background: $dark-grayish-blue;
                         border-radius: 10px;
                         cursor: pointer;
-                        transition: all 0.3s ease-in-out;
+                        transition: all $transition-traits;
+
 
                         .theme-btn {
+                            background: $dark-grayish-blue;
                             position: absolute;
-                            left: 3px;
                             top: 3px;
+                            left: 3px;
                             width: 14px;
                             height: 14px;
-                            background: $almost-white;
                             border-radius: 50%;
-                            transition: all 0.3s ease-in-out;
+                            transition: all $transition-traits;
                         }
-    
+
                         .theme-btn-right {
                             left: 22px;
                         }
                     }
                 }
+
 
                 .hide-sidebar-btn {
                     background: transparent;
@@ -194,11 +207,11 @@
                     display: none;
                     align-items: center;
                     gap: 0.5rem;
-                    font-size: 0.9rem;
+                    font-size: 0.95rem;
                     letter-spacing: -0.3px;
-                    margin-top: 0.5rem;
+                    margin-top: 1rem;
                     cursor: pointer;
-                    transition: color 0.25s ease-in-out;
+                    transition: color $transition-traits;
 
                     &:hover {
                         color: darken($medium-gray, 20%);
@@ -212,50 +225,52 @@
         }
     }
 
-    // ======================== Light Theme.
+
+    // ================================================ Light Theme.
     &.sidebar-wrapper-light {
         background-color: $white;
+
 
         .sidebar-content-wrapper {
             .sidebar-content-container {
                 background-color: $white;
 
+
                 .boards-list-container {
                     h1 {
                         color: darken($gray, 30%);
                     }
-                
+
                     .boards-list {
                         .board-btn {
-                            color: $medium-gray;
-                
                             &.active-board-btn {
-                                background-color: $dark-theme-purple;
+                                background-color: lighten($light-theme-purple, 10%);
                                 color: $white;
                             }
                         }
                     }
 
                     .new-board-btn {
-                        color: darken($gray, 30%);
+                        color: $light-theme-purple;
                     }
                 }
-                
+
+
                 .theme-btn-wrapper {
                     .theme-btn-container {
-                        background: $ghost-white;
+                        background: darken($ghost-white, 1%);
+
+                        dfn {
+                            color: $gray;
+                        }
                 
                         .theme-switcher {
                             background: $white;
-                
+
                             .theme-btn {
-                                background: #333333;
+                                background-color: $light-theme-purple;
                             }
                         }
-                    }
-                
-                    .hide-sidebar-btn {
-                        color: $medium-gray;
                     }
                 }
             }

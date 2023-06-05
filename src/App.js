@@ -2,9 +2,10 @@ import './Reset.css';
 import "./Scss/style.css";
 // ===== Redux.
 import { useSelector, useDispatch } from 'react-redux';
-import { hideSidebar } from "./Redux/UX";
 // ===== Components.
 import Sidebar from './Components/Sidebar';
+import ShowSidebar from './Components/ShowSidebar';
+import Main from './Components/Main';
 
 function App() {
   const dispatch = useDispatch();
@@ -20,7 +21,8 @@ function App() {
       </div>
 
       <div className={`main-content-container ${isSidebarHidden ? "wide" : ""}`}>
-        <button onClick={() => dispatch(hideSidebar())}>Sidebar hide/show</button>
+        <ShowSidebar />
+        <Main />
       </div>
 
     </div>

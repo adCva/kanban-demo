@@ -1,0 +1,27 @@
+.show-sidebar-container {
+    background-color: $light-theme-purple;
+    color: $ghost-white;
+    display: none;
+    font-size: 1.7rem;
+    padding: 0.6rem 1.15rem 0.3rem 0.6rem;
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+    cursor: pointer;
+    transition: all $transition-traits;
+    transition-delay: 0.25s;
+    z-index: 999;
+
+    @media (min-width: 1000px) {
+        display: inline-block;
+        position: fixed;
+        bottom: 4.5rem;
+        left: 0;
+    }
+}
+
+
+.show-sidebar-container-hide {
+    @media (min-width: 1000px) {
+        left: -100px;
+    }
+}

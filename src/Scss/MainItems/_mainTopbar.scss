@@ -1,0 +1,134 @@
+.main-topbar-container {
+    background-color: $dark-grayish-blue;
+    display: none;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    @include colorTransition;
+
+    @media (min-width: 1000px) {
+        display: flex;
+    }
+
+    // ================== Topbar Info.
+    h3 {
+        color: $almost-white;
+        font-size: 0.95rem;
+        font-weight: $main-font-bold;
+        letter-spacing: 0.5px;
+        user-select: none;
+        transition: color $transition-traits;
+    }
+
+
+    // ================== Topbar Info.
+    .topbar-buttons {
+        position: relative;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+
+
+        .topbar-add {
+            background: $almost-white;
+            color: $dark-grayish-blue;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            padding: 0.6rem 1.1rem 0.6rem 0.6rem;
+            border-radius: 50px;
+            cursor: pointer;
+            @include colorTransition;
+
+            &::after {
+                content: "Add New Task";
+                font-size: 0.9rem;
+                margin-left: 5px;
+            }
+        }
+
+
+        .topbar-dropdown-wrapper {
+            .topbar-options-btn {
+                background: none;
+                color: $almost-white;
+                font-size: 1.9rem;
+                display: inline-flex;
+                @include colorTransition;
+            }
+
+            .topbar-dropdown-container {
+                background-color: $dark-grayish-blue;
+                position: absolute;
+                top: 63px;
+                right: 25px;
+                width: 170px;
+                height: 110px;
+                display: grid;
+                justify-items: start;
+                gap: 1rem;
+                padding: 1.2rem 1rem;
+                border-radius: 10px 0 10px 10px;
+                transform: scale(1, 1);
+                transform-origin: 90% 0px;
+                transition: all 0.3s ease-in-out;
+                box-shadow: rgba(21, 67, 136, 0.05) 1.95px 1.95px 2.6px;
+                z-index: 999;
+
+                &.topbar-dropdown-container-hide {
+                    transform: scale(0, 0);
+                }
+
+                button {
+                    background: transparent;
+                    display: flex;
+                    align-items: center;
+                    gap: 0.5rem;
+                    letter-spacing: 1px;
+                    cursor: pointer;
+                    transition: color $transition-traits;
+                }
+
+                .edit-board-btn {
+                    color: $almost-white;
+                }
+
+                .delete-board-btn {
+                    color: $red;
+                }
+            }
+        }
+    }
+
+
+    // ================================================ Light Theme.
+    &.main-topbar-container-light {
+        background-color: $white;
+
+        h3 {
+            color: darken($gray, 25%);
+        }
+
+        .topbar-buttons {
+            .topbar-add {
+                background: $light-theme-purple;
+                color: $white;
+            }
+
+            .topbar-dropdown-wrapper {
+                .topbar-options-btn {
+                    color: $gray !important;
+                }
+
+                .topbar-dropdown-container {
+                    background-color: $white !important;
+                    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+
+                    .edit-board-btn {
+                        color: $gray !important;
+                    }
+                }
+            }
+        }
+    }
+}

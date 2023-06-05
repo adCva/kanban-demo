@@ -27,7 +27,6 @@
             width: 250px;
             min-height: 100vh;
             min-height: 100dvh;
-            background-color: red;
 
             &.hidden {
                 transform: translateX(-100%)
@@ -37,12 +36,16 @@
 
 
     .main-content-container {
-        margin-left: 0;
-        padding: 2rem;
-        transition: margin-left $transition-traits;
+        transition: all $transition-traits;
 
-        &.wide {
-            margin-left: -250px;
+        @media (min-width: 1000px) {
+            margin-left: 0;
+            width: calc(100% - 250px);
+
+            &.wide {
+                margin-left: -250px;   
+                width: 100%;
+            }
         }
     }
 }

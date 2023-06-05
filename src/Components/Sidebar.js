@@ -6,6 +6,7 @@ import { changeViewMode, hideSidebar } from "../Redux/UX";
 // ===== React Icons.
 import { HiSun } from "react-icons/hi2";
 import { BsMoonStarsFill, BsClipboard2Plus, BsClipboard2Check, BsClipboard2 } from "react-icons/bs";
+import { BiHide } from "react-icons/bi";
 // ===== Components.
 import LogoWrapper from './SidebarItems/LogoWrapper';
 
@@ -93,7 +94,7 @@ function Sidebar() {
                 </div>
                 <dfn><BsMoonStarsFill /></dfn>
               </div>
-              <button className='hide-sidebar-btn' onClick={() => dispatch(hideSidebar())}>Hide Sidebar</button>
+              <button className='hide-sidebar-btn' onClick={() => dispatch(hideSidebar())}><BiHide /> Hide Sidebar</button>
             </div>
 
           </div>
