@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useTransition, animated } from '@react-spring/web';
 // ===== Redux.
 import { useSelector, useDispatch } from 'react-redux';
-import { changeViewMode, hideSidebar } from "../Redux/UX";
+import { changeViewMode, hideSidebar, changeActiveBoardId } from "../Redux/UX";
 // ===== React Icons.
 import { HiSun } from "react-icons/hi2";
 import { BsMoonStarsFill, BsClipboard2Plus, BsClipboard2Check, BsClipboard2 } from "react-icons/bs";
@@ -15,6 +15,8 @@ function Sidebar() {
 
   // ===== Redux state.
   const isDarkMode = useSelector((state) => state.ux.darkMode);
+  const activeBoardId = useSelector((state) => state.ux.activeBoardId);
+  const boards = useSelector((state) => state.data.boards);
 
   // ===== Local state.
   const [isMobileCard, setIsMobileCard] = useState(false);
@@ -78,9 +80,16 @@ function Sidebar() {
             <div className='boards-list-container'>
               <h1>All boards: 3</h1>
               <div className='boards-list'>
-                <button className='board-btn active-board-btn'><span><BsClipboard2Check /></span> Board #1</button>
-                <button className='board-btn'><span><BsClipboard2 /></span> Board #2</button>
-                <button className='board-btn'><span><BsClipboard2 /></span> Board #3</button>
+                {boards.map((board, i) => {
+                  return (
+                    <button 
+                      className={activeBoardId === board.board_id ? "board-btn active-board-btn" : "board-btn"}
+                      onClick={() => dispatch(changeActiveBoardId({newId: board.board_id, newName: board.board_name}))}
+                    >
+                      {activeBoardId === board.board_id ? <span><BsClipboard2Check /></span> : <span><BsClipboard2 /></span> } {board.board_name}
+                    </button>
+                  )
+                })}
               </div>
               <button className='new-board-btn'><span><BsClipboard2Plus /></span> + Create New Board</button>
             </div>

@@ -12,6 +12,7 @@ function MainTopbar({darkTheme}) {
 
     // ===== Redux state.
     const isSidebarHidden = useSelector((state) => state.ux.isSidebarHidden);
+    const activeBoardName = useSelector((state) => state.ux.activeBoardName);
 
     // ===== Local state.
     const [isDropdown, setIsDropdown] = useState(false);
@@ -38,7 +39,7 @@ function MainTopbar({darkTheme}) {
     return (
         <div className={darkTheme ? "main-topbar-container" : "main-topbar-container main-topbar-container-light"}>
 
-            <h3>Current Active Board</h3>
+            <h3>{activeBoardName}</h3>
 
             <div className='topbar-buttons'>
                 <button className='topbar-add'><IoIosAdd /></button>

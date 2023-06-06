@@ -98,6 +98,8 @@
                         overflow: hidden;
                         text-overflow: ellipsis;
                         width: 90%;
+                        border-top-right-radius: 45px;
+                        border-bottom-right-radius: 45px;
                         transition: all $transition-traits;
 
                         @media (min-width: 1000px) {
@@ -108,8 +110,6 @@
                         &.active-board-btn {
                             background-color: $ghost-white;
                             color: $black;
-                            border-top-right-radius: 45px;
-                            border-bottom-right-radius: 45px;
                         }
 
 

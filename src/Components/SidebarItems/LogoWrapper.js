@@ -12,6 +12,9 @@ import { HiEllipsisVertical } from "react-icons/hi2";
 function LogoWrapper({isMobileCardOpen, onValueToggle, darkTheme }) {
     const dispatch = useDispatch();
 
+    // ===== Redux state.
+    const activeBoardName = useSelector((state) => state.ux.activeBoardName);
+
     // ===== Local state.
     const [isDropdown, setIsDropdown] = useState(false);
 
@@ -42,7 +45,7 @@ function LogoWrapper({isMobileCardOpen, onValueToggle, darkTheme }) {
         <div className={darkTheme ? "logo-wrapper" : "logo-wrapper logo-wrapper-light"}>
             <div className='logo-container'>
                 <Logo />
-                <h2>Current Board</h2>
+                <h2>{activeBoardName}</h2>
                 <button className='logo-open-btn' onClick={handleMobileCardChange} >{isMobileCardOpen ? <BiChevronDown /> : <BiChevronUp />}</button>
             </div>
             <div className='logo-mobile-btns'>

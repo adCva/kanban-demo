@@ -3,6 +3,7 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 // ===== Components.
 import MainTopbar from './MainItems/MainTopbar';
+import TasksList from './MainItems/TasksList';
 import EmptyBoard from './MainItems/EmptyBoard';
 
 function Main() {
@@ -17,7 +18,7 @@ function Main() {
       
       <MainTopbar darkTheme={isDarkMode} />
 
-      <EmptyBoard />
+      <TasksList darkTheme={isDarkMode} />
 
     </div>
   )

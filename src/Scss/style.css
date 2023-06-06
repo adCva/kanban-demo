@@ -243,6 +243,8 @@
   overflow: hidden;
   text-overflow: ellipsis;
   width: 90%;
+  border-top-right-radius: 45px;
+  border-bottom-right-radius: 45px;
   transition: all 0.25s ease-in-out;
 }
 @media (min-width: 1000px) {
@@ -254,8 +256,6 @@
 .sidebar-wrapper .sidebar-content-wrapper .sidebar-content-container .boards-list-container .boards-list .board-btn.active-board-btn {
   background-color: #f0f4ff;
   color: #161518;
-  border-top-right-radius: 45px;
-  border-bottom-right-radius: 45px;
 }
 .sidebar-wrapper .sidebar-content-wrapper .sidebar-content-container .boards-list-container .boards-list .board-btn span {
   font-size: 1rem;
@@ -616,8 +616,8 @@
 }
 .main-topbar-container h3 {
   color: #fafbff;
+  font-family: "Alata", sans-serif;
   font-size: 0.95rem;
-  font-weight: 700;
   letter-spacing: 0.5px;
   -webkit-user-select: none;
      -moz-user-select: none;
