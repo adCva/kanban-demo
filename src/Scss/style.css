@@ -754,6 +754,20 @@
   color: #ffffff;
 }
 
+.tasks-wrapper {
+  padding: 1.5rem;
+}
+.tasks-wrapper .tasks-container {
+  display: flex;
+}
+.tasks-wrapper .tasks-container .tasks-group {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+.tasks-wrapper .tasks-container .tasks-group h1 {
+  background-color: red;
+}
+
 body {
   font-family: "Roboto Condensed", sans-serif;
 }/*# sourceMappingURL=style.css.map */

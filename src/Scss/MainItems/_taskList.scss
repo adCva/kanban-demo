@@ -1,0 +1,17 @@
+.tasks-wrapper {
+    padding: 1.5rem;
+    
+    .tasks-container {
+        display: flex;
+
+        .tasks-group {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+
+
+            h1 {
+                background-color: red;
+            }
+        }
+    }
+}

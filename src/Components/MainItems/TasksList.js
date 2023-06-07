@@ -8,6 +8,7 @@ function TasksList({darkTheme}) {
 
     // ===== Redux state.
     const activeBoardId = useSelector((state) => state.ux.activeBoardId);
+    const board = useSelector((state) => state.data.boards.filter(board => board.board_id === activeBoardId)[0]);
     const tasks = useSelector((state) => state.data.tasks);
 
     // ===== Local state.
@@ -21,15 +22,19 @@ function TasksList({darkTheme}) {
         areThereTasks ? (
             <div className={darkTheme ? "tasks-wrapper" : "tasks-wrapper tasks-wrapper-light"} >
                 <div className='tasks-container'>
-                    {tasks.map((task, i) => task.task_parent_id === activeBoardId ? (
-                        <div className='tasks-group'>
-                            <h1>{task.task_status}</h1>
-                            <div className='task-card'>
-                                <h1>{task.task_title}</h1>
-                                <p>{task.subtasks.filter(subtask => subtask.isComplete === true).length} out of {task.subtasks.length}</p>
+                    {board.board_avaiableStatuses.map((status, i) => {
+                        return (
+                            <div className='task-group' key={i}>
+                                <h1 className={`${status}-color`}>{status === "todo" ? "To Do" : status}</h1>
+                                {tasks.map((task, j) => task.task_parent_id === activeBoardId && task.task_status === status ? (
+                                    <div className='task-card' key={j}>
+                                        <h1>{task.task_title}</h1>
+                                        <p>{task.subtasks.filter(subtask => subtask.isComplete === true).length} out of {task.subtasks.length}</p>
+                                    </div>
+                                ) : null)}
                             </div>
-                        </div>
-                    ) : null)}
+                        )
+                    })}
                     <button className='add-column-btn'>+ New Column</button>
                 </div>
             </div>
