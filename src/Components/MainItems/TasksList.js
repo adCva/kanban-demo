@@ -13,10 +13,20 @@ function TasksList({darkTheme}) {
 
     // ===== Local state.
     const [areThereTasks, setAreThereTasks] = useState(false);
+    const [isAccordionExpanded, setIsAccordionExpanded] = useState([]);
+
+    const toggleAccordion = (status) => {
+        if (isAccordionExpanded.includes(status)) {
+            setIsAccordionExpanded(isAccordionExpanded.filter(element => element !== status));
+        } else {
+            setIsAccordionExpanded([...isAccordionExpanded, status]);
+        }
+    }
 
     useEffect(() => {
         setAreThereTasks(tasks.filter(task => task.task_parent_id === activeBoardId).length > 0);
     }, [activeBoardId])
+    
 
     return (
         areThereTasks ? (
@@ -25,8 +35,8 @@ function TasksList({darkTheme}) {
                     {board.board_avaiableStatuses.map((status, i) => {
                         return (
                             <div className='task-group' key={i}>
-                                <h1 className={`${status}-color`}>{status === "todo" ? "To Do" : status}</h1>
-                                {tasks.map((task, j) => task.task_parent_id === activeBoardId && task.task_status === status ? (
+                                <h1 className={`${status}-color`} onClick={() => toggleAccordion(status)}>{status === "todo" ? "To Do" : status}</h1>
+                                {isAccordionExpanded.includes(status) && tasks.map((task, j) => task.task_parent_id === activeBoardId && task.task_status === status ? (
                                     <div className='task-card' key={j}>
                                         <h1>{task.task_title}</h1>
                                         <p>{task.subtasks.filter(subtask => subtask.isComplete === true).length} out of {task.subtasks.length}</p>
