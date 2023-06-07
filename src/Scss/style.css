@@ -759,13 +759,20 @@
 }
 .tasks-wrapper .tasks-container {
   display: flex;
+  flex-direction: column;
 }
-.tasks-wrapper .tasks-container .tasks-group {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
+@media (min-width: 1000px) {
+  .tasks-wrapper .tasks-container {
+    flex-direction: row;
+    justify-content: space-between;
+  }
 }
-.tasks-wrapper .tasks-container .tasks-group h1 {
-  background-color: red;
+.tasks-wrapper .tasks-container .task-group {
+  margin-bottom: 1rem;
+}
+.tasks-wrapper .tasks-container .task-group .status-title {
+  background-color: #2c2c36;
+  text-transform: capitalize;
 }
 
 body {

@@ -3,14 +3,20 @@
     
     .tasks-container {
         display: flex;
+        flex-direction: column;
 
-        .tasks-group {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
+        @media (min-width: 1000px) {
+            flex-direction: row;
+            justify-content: space-between;
+        }
+
+        .task-group {
+            margin-bottom: 1rem;
 
 
-            h1 {
-                background-color: red;
+            .status-title {
+                background-color: $dark-grayish-blue;
+                text-transform: capitalize;
             }
         }
     }
