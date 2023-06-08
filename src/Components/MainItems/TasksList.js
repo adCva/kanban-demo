@@ -32,10 +32,11 @@ function TasksList({darkTheme}) {
         areThereTasks ? (
             <div className={darkTheme ? "tasks-wrapper" : "tasks-wrapper tasks-wrapper-light"} >
                 <div className='tasks-container'>
+                    <div className='tasks-list'>
                     {board.board_avaiableStatuses.map((status, i) => {
                         return (
                             <div className='task-group' key={i}>
-                                <h1 className={`${status}-color status-title`} onClick={() => toggleAccordion(status)}>{status === "todo" ? "To Do" : status}</h1>
+                                <h1 className={`${status}-color status-title`} onClick={() => toggleAccordion(status)}>{status === "todo" ? "To Do" : status} (3)</h1>
                                 {isAccordionExpanded.includes(status) && tasks.map((task, j) => task.task_parent_id === activeBoardId && task.task_status === status ? (
                                     <div className='task-card' key={j}>
                                         <h1>{task.task_title}</h1>
@@ -45,6 +46,7 @@ function TasksList({darkTheme}) {
                             </div>
                         )
                     })}
+                    </div>
                     <button className='add-column-btn'>+ New Column</button>
                 </div>
             </div>

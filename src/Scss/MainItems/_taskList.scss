@@ -6,17 +6,154 @@
         flex-direction: column;
 
         @media (min-width: 1000px) {
-            flex-direction: row;
-            justify-content: space-between;
+            display: grid;
+            grid-template-columns: 70% 26%;
+            gap: 2rem;
         }
 
-        .task-group {
-            margin-bottom: 1rem;
+        @media (min-width: 1000px) {
+            grid-template-columns: 75% 23%;
+        }
+
+        @media (min-width: 1350px) {
+            grid-template-columns: 78% 20%;
+        }
+
+        @media (min-width: 1450px) {
+            grid-template-columns: 80% 18%;
+        }
+
+        .tasks-list {        
+            height: fit-content;
+
+            @media (min-width: 1200px) {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 2rem;
+            }
+
+            @media (min-width: 1350px) {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .task-group {
+                margin-bottom: 2rem;
+                width: 100%;
+
+                @media (min-width: 1000px) {
+                    margin-bottom: 0;
+                }
+
+                .status-title {
+                    display: flex;
+                    align-items: center;
+                    gap: 0.5rem;
+                    font-size: 0.95rem;
+                    text-transform: capitalize;
+                    margin-bottom: 1rem;
+
+                    &::before {
+                        content: "";
+                        display: inline-block;
+                        height: 8px;
+                        width: 8px;
+                        border-radius: 50px;
+                        background-color: $red;
+                    }
+
+                    &.todo-color {
+                        &::before {
+                            background-color: $skyblue;
+                        }
+                    }
+
+                    &.doing-color {
+                        &::before {
+                            background-color: $medium-purple;
+                        }
+                    }
+
+                    &.done-color {
+                        &::before {
+                            background-color: $turquoise;
+                        }
+                    }
+                }
 
 
-            .status-title {
-                background-color: $dark-grayish-blue;
-                text-transform: capitalize;
+                .task-card {
+                    background-color: $dark-grayish-blue;
+                    padding: 1rem;
+                    margin-bottom: 1rem;
+                    border-radius: 10px;
+                    box-shadow: rgba(124, 124, 124, 0.15) 1.95px 1.95px 2.6px;
+                    cursor: pointer;
+                    transition: all $transition-traits;
+
+                    &:last-of-type {
+                        margin-bottom: 0;
+                    }
+
+                    h1 {
+                        font-size: 0.9rem;
+                        font-weight: $main-font-bold;
+                        letter-spacing: 1px;
+                        transition: color $transition-traits;
+                    }
+
+                    p {
+                        color: $medium-gray;
+                        font-size: 0.8rem;
+                        font-weight: $main-font-bold;
+                        letter-spacing: 1px;
+                        margin-top: 0.5rem;
+                        transition: color $transition-traits;
+                    }
+                }
+            }
+        }
+
+
+        .add-column-btn {
+            background-color: darken($very-dark-blue, 1%);
+            color: $almost-white;
+            width: 100%;
+            padding: 1.7rem 0;
+            border-radius: 10px;
+            cursor: pointer;
+            @include colorTransition;
+
+            &:hover {
+                background-color: lighten($dark-grayish-blue, 5%);
+            }
+
+            @media (min-width: 1000px) {
+                width: 100%;
+                min-height: calc(100vh - 8.5rem);
+            }
+        }
+    }
+
+
+    &.tasks-wrapper-light {
+        .tasks-container {
+            .task-group {
+                .task-card {
+                    background-color: $white;
+
+                    h1 {
+                        color: #3d3d3d;
+                    }
+    
+                    p {
+                        color: $gray;
+                    }
+                }
+            }
+
+            .add-column-btn {
+                background-color: $alice-blue;
+                color: darken(#818ea2, 20%);
             }
         }
     }
