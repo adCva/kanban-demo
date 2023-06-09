@@ -4,11 +4,15 @@
     .tasks-container {
         display: flex;
         flex-direction: column;
+        max-width: 600px;
+        margin: 1rem auto 0;
 
         @media (min-width: 1000px) {
             display: grid;
             grid-template-columns: 70% 26%;
             gap: 2rem;
+            max-width: none;
+            margin: 0;
         }
 
         @media (min-width: 1000px) {
@@ -34,23 +38,33 @@
 
             @media (min-width: 1350px) {
                 grid-template-columns: repeat(3, 1fr);
+                row-gap: 0;
             }
 
             .task-group {
-                margin-bottom: 2rem;
                 width: 100%;
 
                 @media (min-width: 1000px) {
-                    margin-bottom: 0;
                 }
 
                 .status-title {
+                    background-color: darken($very-dark-blue, 1%);
                     display: flex;
                     align-items: center;
                     gap: 0.5rem;
-                    font-size: 0.95rem;
+                    font-size: 0.9rem;
+                    font-weight: $main-font-bold;
+                    letter-spacing: 0.5px;
                     text-transform: capitalize;
-                    margin-bottom: 1rem;
+                    margin-bottom: 0.5rem;
+                    padding: 1rem;
+                    border-radius: 10px;
+                    cursor: pointer;
+                    transition: background-color $transition-traits;
+
+                    &:hover {
+                        background-color: $dark-grayish-blue;
+                    }
 
                     &::before {
                         content: "";
@@ -83,15 +97,16 @@
 
                 .task-card {
                     background-color: $dark-grayish-blue;
-                    padding: 1rem;
-                    margin-bottom: 1rem;
+                    padding: 1.2rem 1rem 1rem;
+                    margin-bottom: 0.7rem;
                     border-radius: 10px;
                     box-shadow: rgba(124, 124, 124, 0.15) 1.95px 1.95px 2.6px;
                     cursor: pointer;
                     transition: all $transition-traits;
 
-                    &:last-of-type {
-                        margin-bottom: 0;
+                    &:hover {
+                        background-color: darken($dark-grayish-blue, 2%);
+                        box-shadow: rgba(49, 49, 49, 0.15) 1.95px 1.95px 2.6px;
                     }
 
                     h1 {
@@ -137,16 +152,32 @@
 
     &.tasks-wrapper-light {
         .tasks-container {
-            .task-group {
-                .task-card {
-                    background-color: $white;
+            .tasks-list {
+                .task-group {
+                    .status-title {
+                        background-color: $alice-blue;
+                        color: darken(#818ea2, 20%);
 
-                    h1 {
-                        color: #3d3d3d;
+                        &:hover {
+                            background-color: darken($alice-blue, 2%);
+                        }
                     }
+                    
+                    .task-card {
+                        background-color: $white;
+
+                        &:hover {
+                            background-color: darken($alice-blue, 3%);
+                            box-shadow: rgba(228, 228, 228, 0.15) 1.95px 1.95px 2.6px;
+                        }
     
-                    p {
-                        color: $gray;
+                        h1 {
+                            color: #3d3d3d;
+                        }
+        
+                        p {
+                            color: $gray;
+                        }
                     }
                 }
             }

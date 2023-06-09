@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import MainTopbar from './MainItems/MainTopbar';
 import TasksList from './MainItems/TasksList';
 import EmptyBoard from './MainItems/EmptyBoard';
+import TaskDetails from './MainItems/TaskDetails';
 
 function Main() {
   const dispatch = useDispatch();
@@ -19,6 +20,8 @@ function Main() {
       <MainTopbar darkTheme={isDarkMode} />
 
       <TasksList darkTheme={isDarkMode} />
+
+      <TaskDetails darkTheme={isDarkMode} />
 
     </div>
   )

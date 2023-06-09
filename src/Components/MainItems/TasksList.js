@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 // ===== Redux.
 import { useSelector, useDispatch } from 'react-redux';
+import { openDetailsPop } from "../../Redux/UX";
+// ===== Components.
 import EmptyBoard from './EmptyBoard';
 
 function TasksList({darkTheme}) {
@@ -25,6 +27,7 @@ function TasksList({darkTheme}) {
 
     useEffect(() => {
         setAreThereTasks(tasks.filter(task => task.task_parent_id === activeBoardId).length > 0);
+        setIsAccordionExpanded([]);
     }, [activeBoardId])
 
 
@@ -36,9 +39,9 @@ function TasksList({darkTheme}) {
                     {board.board_avaiableStatuses.map((status, i) => {
                         return (
                             <div className='task-group' key={i}>
-                                <h1 className={`${status}-color status-title`} onClick={() => toggleAccordion(status)}>{status === "todo" ? "To Do" : status} (3)</h1>
+                                <h1 className={`${status}-color status-title`} onClick={() => toggleAccordion(status)}>{status === "todo" ? "To Do" : status} ({tasks.filter(task => task.task_parent_id === activeBoardId && task.task_status === status).length})</h1>
                                 {isAccordionExpanded.includes(status) && tasks.map((task, j) => task.task_parent_id === activeBoardId && task.task_status === status ? (
-                                    <div className='task-card' key={j}>
+                                    <div className='task-card' key={j} onClick={() => dispatch(openDetailsPop({seeTask: task}))}>
                                         <h1>{task.task_title}</h1>
                                         <p>{task.subtasks.filter(subtask => subtask.isComplete === true).length} out of {task.subtasks.length}</p>
                                     </div>

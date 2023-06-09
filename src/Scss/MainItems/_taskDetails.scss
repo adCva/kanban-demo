@@ -1,0 +1,8 @@
+.task-details-wrapper {
+    @include absoluteParentComponent;
+
+    .task-details-container {
+        @include absoluteChildComponent;
+        background-color: $dark-grayish-blue;
+    }
+}

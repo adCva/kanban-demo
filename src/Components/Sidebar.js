@@ -49,6 +49,15 @@ function Sidebar() {
     }
   };
 
+  // ===== 
+  const changeBoard = (id, name) => {
+    dispatch(changeActiveBoardId({newId: id, newName: name}));
+    
+    if (window.innerWidth < 1000) {
+      setIsMobileCard(false);
+    }
+  }
+
   useEffect(() => {
     // Change isMobileCard value when loading page on bigger screens.
     if (window.innerWidth > 1000) {
@@ -78,13 +87,13 @@ function Sidebar() {
 
             {/* =========== Boards List =========== */}
             <div className='boards-list-container'>
-              <h1>All boards: 3</h1>
+              <h1>All boards: {boards.length}</h1>
               <div className='boards-list'>
                 {boards.map((board, i) => {
                   return (
                     <button 
                       className={activeBoardId === board.board_id ? "board-btn active-board-btn" : "board-btn"}
-                      onClick={() => dispatch(changeActiveBoardId({newId: board.board_id, newName: board.board_name}))}
+                      onClick={() => changeBoard(board.board_id, board.board_name)}
                     >
                       {activeBoardId === board.board_id ? <span><BsClipboard2Check /></span> : <span><BsClipboard2 /></span> } {board.board_name}
                     </button>

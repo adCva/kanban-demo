@@ -3,10 +3,16 @@
     justify-content: space-between;
     align-items: center;
     padding: 1rem;
+    max-width: calc(600px + 2rem);
+    margin: 0 auto;
     @include colorTransition;
 
     @media (min-width: 768px) {
         padding: 1.2rem 1.5rem;
+    }
+    
+    @media (min-width: 1000px) {
+        max-width: none;
     }
     
 
