@@ -49,14 +49,6 @@ export const data = createSlice({
                 subtasks: []
             },
             {
-                task_id: 1,
-                task_parent_id: 0,
-                task_title: "Add search endpoints",
-                task_desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-                task_status: "doing",
-                subtasks: []
-            },
-            {
                 task_id: 2,
                 task_parent_id: 0,
                 task_title: "Conduct 5 wireframe tests.",
@@ -100,12 +92,41 @@ export const data = createSlice({
     },
 
     reducers: {
-        updateSubtaskStatus: (state, action) => {
+        updateSubtasks: (state, action) => {
             const initialState = JSON.parse(JSON.stringify(state.tasks));
-            const updatedTasks = initialState.map((item) => item.task_parent_id === action.payload.parentId ? action.payload.updateObj : item);
 
-            console.log(action.payload.updateObj);
-            // console.log(updatedTasks);
+            const updatedTasks = initialState.map(item => {
+                if (item.task_id === action.payload.thisTaskId) {
+                    return {
+                        ...item,
+                        subtasks: action.payload.updatedObj
+                    }
+                }
+
+                return item;
+            });
+
+            console.log(updatedTasks);
+
+            return {
+                ...state,
+                tasks: [...updatedTasks]
+            }
+        },
+
+        updateTaskStatus: (state, action) => {
+            const initialState = JSON.parse(JSON.stringify(state.tasks));
+
+            const updatedTasks = initialState.map(item => {
+                if (item.task_id === action.payload.thisTaskId) {
+                    return {
+                        ...item,
+                        task_status: action.payload.newStatus
+                    }
+                }
+
+                return item;
+            });
 
             return {
                 ...state,
@@ -115,6 +136,6 @@ export const data = createSlice({
     }
 })
 
-export const { updateSubtaskStatus } = data.actions;
+export const { updateSubtasks, updateTaskStatus } = data.actions;
 
 export default data.reducer;

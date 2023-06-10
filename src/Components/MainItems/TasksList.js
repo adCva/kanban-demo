@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { openDetailsPop } from "../../Redux/UX";
 // ===== Components.
+import TaskDetails from './TaskDetails';
 import EmptyBoard from './EmptyBoard';
 
 function TasksList({darkTheme}) {
@@ -16,6 +17,7 @@ function TasksList({darkTheme}) {
     // ===== Local state.
     const [areThereTasks, setAreThereTasks] = useState(false);
     const [isAccordionExpanded, setIsAccordionExpanded] = useState([]);
+    const [detailsObject, setDetailsObject] = useState(null);
 
     const toggleAccordion = (status) => {
         if (isAccordionExpanded.includes(status)) {
@@ -24,6 +26,11 @@ function TasksList({darkTheme}) {
             setIsAccordionExpanded([...isAccordionExpanded, status]);
         }
     }
+
+    const openDetails = (obj) => {
+        setDetailsObject(obj);
+        dispatch(openDetailsPop({taskDetails: obj}));
+    };
 
     useEffect(() => {
         setAreThereTasks(tasks.filter(task => task.task_parent_id === activeBoardId).length > 0);
@@ -41,7 +48,7 @@ function TasksList({darkTheme}) {
                             <div className='task-group' key={i}>
                                 <h1 className={`${status}-color status-title`} onClick={() => toggleAccordion(status)}>{status === "todo" ? "To Do" : status} ({tasks.filter(task => task.task_parent_id === activeBoardId && task.task_status === status).length})</h1>
                                 {isAccordionExpanded.includes(status) && tasks.map((task, j) => task.task_parent_id === activeBoardId && task.task_status === status ? (
-                                    <div className='task-card' key={j} onClick={() => dispatch(openDetailsPop({seeTask: task}))}>
+                                    <div className='task-card' key={j} onClick={() => openDetails(task)}>
                                         <h1>{task.task_title}</h1>
                                         <p>{task.subtasks.filter(subtask => subtask.isComplete === true).length} out of {task.subtasks.length}</p>
                                     </div>
@@ -52,6 +59,8 @@ function TasksList({darkTheme}) {
                     </div>
                     <button className='add-column-btn'>+ New Column</button>
                 </div>
+
+                {detailsObject && <TaskDetails darkTheme={darkTheme} details={detailsObject} />}
             </div>
         ) : (
             <EmptyBoard />

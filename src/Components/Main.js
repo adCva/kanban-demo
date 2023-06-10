@@ -21,7 +21,7 @@ function Main() {
 
       <TasksList darkTheme={isDarkMode} />
 
-      <TaskDetails darkTheme={isDarkMode} />
+      
 
     </div>
   )
