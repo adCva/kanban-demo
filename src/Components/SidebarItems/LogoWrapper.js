@@ -45,7 +45,7 @@ function LogoWrapper({isMobileCardOpen, onValueToggle, darkTheme }) {
         <div className={darkTheme ? "logo-wrapper" : "logo-wrapper logo-wrapper-light"}>
             <div className='logo-container'>
                 <Logo />
-                <h2>{activeBoardName}</h2>
+                <h2 onClick={handleMobileCardChange}>{activeBoardName}</h2>
                 <button className='logo-open-btn' onClick={handleMobileCardChange} >{isMobileCardOpen ? <BiChevronDown /> : <BiChevronUp />}</button>
             </div>
             <div className='logo-mobile-btns'>

@@ -24,13 +24,13 @@ export const data = createSlice({
             {
                 task_id: 0,
                 task_parent_id: 0,
-                task_title: "Build UI for onboarding flow",
+                task_title: "Build UI for onboarding flow lorem ipsum dolor sit amet",
                 task_desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
                 task_status: "todo",
                 subtasks: [
                     {
                         subtask_id: 0,
-                        subtask_name: "Lorem ipsum #1",
+                        subtask_name: "Lorem ipsum #1. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
                         isComplete: true
                     },
                     {
@@ -97,9 +97,24 @@ export const data = createSlice({
                 subtasks: []
             }
         ]
+    },
+
+    reducers: {
+        updateSubtaskStatus: (state, action) => {
+            const initialState = JSON.parse(JSON.stringify(state.tasks));
+            const updatedTasks = initialState.map((item) => item.task_parent_id === action.payload.parentId ? action.payload.updateObj : item);
+
+            console.log(action.payload.updateObj);
+            // console.log(updatedTasks);
+
+            return {
+                ...state,
+                tasks: [...updatedTasks]
+            }
+        }
     }
 })
 
-export const {  } = data.actions;
+export const { updateSubtaskStatus } = data.actions;
 
 export default data.reducer;
