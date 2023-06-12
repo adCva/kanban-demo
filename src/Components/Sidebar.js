@@ -33,7 +33,7 @@ function Sidebar() {
     setIsMobileCard(!isMobileCard);
   };
 
-  // ===== Close boards modal on outside click.
+  // ===== Close boards modal menu on outside click (only on mobile & tablet).
   const closeBoardModalOutsideClick = (event) => {
     if (isMobileCard && event.target.className === "sidebar-content-wrapper") {
       setIsMobileCard(false);
@@ -49,7 +49,7 @@ function Sidebar() {
     }
   };
 
-  // ===== 
+  // ===== Change active board & close modal menu.
   const changeBoard = (id, name) => {
     dispatch(changeActiveBoardId({newId: id, newName: name}));
     
@@ -94,25 +94,26 @@ function Sidebar() {
                     <button 
                       className={activeBoardId === board.board_id ? "board-btn active-board-btn" : "board-btn"}
                       onClick={() => changeBoard(board.board_id, board.board_name)}
+                      key={i}
                     >
                       {activeBoardId === board.board_id ? <span><BsClipboard2Check /></span> : <span><BsClipboard2 /></span> } {board.board_name}
                     </button>
                   )
                 })}
               </div>
-              <button className='new-board-btn'><span><BsClipboard2Plus /></span> + Create New Board</button>
+              <button className='new-board-btn' ><span><BsClipboard2Plus /></span> + Create New Board</button>
             </div>
 
             {/* =========== Theme Btn Container =========== */}
             <div className='theme-btn-wrapper'>
               <div className='theme-btn-container'>
                 <dfn><HiSun /></dfn>
-                <div className='theme-switcher' onClick={() => dispatch(changeViewMode())}>
+                <div className='theme-switcher' onClick={() => dispatch(changeViewMode())} >
                   <button className={isDarkMode ? "theme-btn theme-btn-right" : "theme-btn" } />
                 </div>
                 <dfn><BsMoonStarsFill /></dfn>
               </div>
-              <button className='hide-sidebar-btn' onClick={() => dispatch(hideSidebar())}><BiHide /> Hide Sidebar</button>
+              <button className='hide-sidebar-btn' onClick={() => dispatch(hideSidebar())} ><BiHide /> Hide Sidebar</button>
             </div>
 
           </div>

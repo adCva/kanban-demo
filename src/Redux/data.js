@@ -92,6 +92,15 @@ export const data = createSlice({
     },
 
     reducers: {
+        updateTask: (state, action) => {
+            const initialState = JSON.parse(JSON.stringify(state.tasks));
+            const updatedTasks = initialState.map(task => task.task_id === action.payload.updateAtThisId ? action.payload.updatedTask : task);
+
+            return {
+                ...state,
+                tasks: [...updatedTasks]
+            }
+        },
         updateSubtasks: (state, action) => {
             const initialState = JSON.parse(JSON.stringify(state.tasks));
 
@@ -105,8 +114,6 @@ export const data = createSlice({
 
                 return item;
             });
-
-            console.log(updatedTasks);
 
             return {
                 ...state,
@@ -132,10 +139,19 @@ export const data = createSlice({
                 ...state,
                 tasks: [...updatedTasks]
             }
+        },
+        deleteTask: (state, action) => {
+            const initialState = JSON.parse(JSON.stringify(state.tasks));
+            const updatedTasks = initialState.filter(task => task.task_id !== action.payload.deleteWithId);
+            
+            return {
+                ...state,
+                tasks: [...updatedTasks]
+            }
         }
     }
 })
 
-export const { updateSubtasks, updateTaskStatus } = data.actions;
+export const { updateTask, updateSubtasks, updateTaskStatus, deleteTask } = data.actions;
 
 export default data.reducer;

@@ -5,9 +5,10 @@
         @include absoluteChildComponent;
         background-color: $dark-grayish-blue;
         display: grid;
-        // gap: 1rem;
         letter-spacing: 0.5px;
 
+
+        // ==================================== Title & Dropdown.
         .task-title-and-menu {
             display: flex;
             justify-content: space-between;
@@ -20,7 +21,6 @@
                 font-weight: $main-font-bold;
                 line-height: 1.25;
             }
-
 
             .menu-buttons-container {
                 position: relative;
@@ -73,6 +73,8 @@
             }
         }
 
+
+        // ==================================== Description.
         p {
             color: $medium-gray;
             font-size: 0.9rem;
@@ -80,6 +82,7 @@
         }
 
 
+        // ==================================== Subtasks.
         .subtasks-container {
             margin-top: 1.4rem;
 
@@ -149,6 +152,7 @@
         }
 
 
+        // ==================================== Status.
         .status-container {
             display: grid;
             margin-top: 1.4rem;
@@ -171,6 +175,7 @@
         }
 
 
+        // ==================================== Light Theme.
         &.task-details-container-light {
             background-color: $white;
 
@@ -216,5 +221,6 @@
                 }
             }
         }
+        
     }
 }

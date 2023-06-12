@@ -23,16 +23,11 @@ $gray: #aeafb0;
 
 
 // ======= General Colors.
-$skyblue: #70c2ce;
-$medium-purple: #8479c8;
-$turquoise: #90cdbd;
-$red: #ef7c8e;
-
-
-// ======= Not Decided Yet.
-$blue1: #1d3557;
-$blue2: #457b9d;
-$blue3: #a8dadc;
+$light-yellow: #fcefb4;
+$light-blue: #ade8f4;
+$light-green: #b7e4c7;
+$light-gray: #b4b8ab;
+$red: #e54b4b;
 
 
 // ======= Others.
@@ -58,13 +53,11 @@ $transition-traits: 0.25s ease-in-out;
     }
 }
 
-
 @mixin colorTransition() {
     transition-property: background-color, color;
     transition-duration: 0.25s;
     transition-timing-function: ease-in-out;
 }
-
 
 @mixin absoluteParentComponent() {
     background-color: rgba(0, 0, 0, 0.6);
@@ -90,6 +83,7 @@ $transition-traits: 0.25s ease-in-out;
 }
 
 
+// ======= Animation.
 @keyframes loadingLines {
     0% {
         transform: scaleY(0.3);

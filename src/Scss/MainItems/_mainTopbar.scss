@@ -10,7 +10,7 @@
         display: flex;
     }
 
-    // ================== Topbar Info.
+    // ================== Active board title.
     h3 {
         color: $almost-white;
         font-family: 'Alata', sans-serif;
@@ -21,7 +21,6 @@
     }
 
 
-    // ================== Topbar Info.
     .topbar-buttons {
         position: relative;
         display: flex;
@@ -29,6 +28,7 @@
         gap: 1rem;
 
 
+        // ================== Add Task button.
         .topbar-add {
             background: $almost-white;
             color: $dark-grayish-blue;
@@ -48,6 +48,7 @@
         }
 
 
+        // ================== Dropdown.
         .topbar-dropdown-wrapper {
             .topbar-options-btn {
                 background: none;

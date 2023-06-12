@@ -1,5 +1,9 @@
 .tasks-wrapper {
-    padding: 1.5rem;
+    padding: 1.5rem 1rem;
+
+    @media (min-width: 1000px) {
+        padding: 1.5rem;
+    }
     
     .tasks-container {
         display: flex;
@@ -27,6 +31,8 @@
             grid-template-columns: 80% 18%;
         }
 
+
+        // ==================================== List of tasks.
         .tasks-list {        
             height: fit-content;
 
@@ -72,24 +78,24 @@
                         height: 8px;
                         width: 8px;
                         border-radius: 50px;
-                        background-color: $red;
+                        background-color: $light-gray;
                     }
 
                     &.todo-color {
                         &::before {
-                            background-color: $skyblue;
+                            background-color: $light-yellow;
                         }
                     }
 
                     &.doing-color {
                         &::before {
-                            background-color: $medium-purple;
+                            background-color: $light-blue;
                         }
                     }
 
                     &.done-color {
                         &::before {
-                            background-color: $turquoise;
+                            background-color: $light-green;
                         }
                     }
                 }
@@ -129,6 +135,7 @@
         }
 
 
+        // ==================================== New Column Button.
         .add-column-btn {
             background-color: darken($very-dark-blue, 1%);
             color: $almost-white;
@@ -150,6 +157,7 @@
     }
 
 
+    // ==================================== Light Theme.
     &.tasks-wrapper-light {
         .tasks-container {
             .tasks-list {

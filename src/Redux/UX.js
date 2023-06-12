@@ -8,6 +8,7 @@ export const UX = createSlice({
         activeBoardId: 0,
         activeBoardName: "Platform Launch",
         isDetailsPopOpen: false,
+        isEditDetailsPopOpen: false,
         getDetailsForTask: null
     },
 
@@ -21,9 +22,6 @@ export const UX = createSlice({
         changeActiveBoardId: (state, action) => {
             state.activeBoardId = action.payload.newId
             state.activeBoardName = action.payload.newName
-        },
-        toggleDetailsPop: (state) => {
-            state.isDetailsPopOpen = !state.isDetailsPopOpen;
         },
         openDetailsPop: (state, action) => {
             return {
@@ -52,10 +50,21 @@ export const UX = createSlice({
                 isDetailsPopOpen: false,
                 getDetailsForTask: null
             }
+        },
+        openFullEditTaskPop: (state) => {
+            state.isEditDetailsPopOpen = true;
+            state.isDetailsPopOpen = false;
+        },
+        closeFullEditTaskPop: (state) => {
+            return {
+                ...state,
+                isEditDetailsPopOpen: false,
+                getDetailsForTask: null
+            }
         }
     }
 })
 
-export const { changeViewMode, hideSidebar, changeActiveBoardId, toggleDetailsPop, openDetailsPop, updateDetailsForView, closeDetailsPop } = UX.actions;
+export const { changeViewMode, hideSidebar, changeActiveBoardId, openDetailsPop, updateDetailsForView, closeDetailsPop, openFullEditTaskPop, closeFullEditTaskPop } = UX.actions;
 
 export default UX.reducer;

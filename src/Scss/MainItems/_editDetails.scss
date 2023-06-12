@@ -1,0 +1,16 @@
+.edit-task-wrapper {
+    @include absoluteParentComponent;
+
+    .edit-task-container {
+        @include absoluteChildComponent;
+        background-color: $dark-grayish-blue;
+        display: grid;
+        letter-spacing: 0.5px;
+
+        
+        // ==================================== Light Theme.
+        &.edit-task-container-light {
+            background-color: $white;
+        }
+    }
+}
