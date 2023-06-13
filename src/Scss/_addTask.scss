@@ -1,0 +1,14 @@
+.add-task-wrapper {
+    @include absoluteParentComponent;
+
+    .add-task-container {
+        @include absoluteChildComponent;
+        background-color: $dark-grayish-blue;
+
+
+        // ==================================== Light Theme.
+        &.add-task-container-light {
+            background-color: $white;
+        }
+    }
+}

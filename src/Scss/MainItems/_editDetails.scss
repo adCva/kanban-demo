@@ -4,13 +4,277 @@
     .edit-task-container {
         @include absoluteChildComponent;
         background-color: $dark-grayish-blue;
-        display: grid;
         letter-spacing: 0.5px;
+
+
+        // ==================================== Component Title.
+        .component-title {
+            font-weight: $main-font-bold;
+            margin-bottom: 1.5rem;
+        }
+
+        // ==================================== Form.
+        .edit-task-from {
+            width: 100%;
+            display: grid;
+            position: relative;
+
+            .edit-group,
+            .subtasks-edit-group,
+            .status-edit-group {
+                display: grid;
+
+                label {
+                    font-size: 0.8rem;
+                    letter-spacing: 1px;
+                    margin-bottom: 0.5rem;
+                }
+            }
+
+            // ==================================== Title & Description.
+            .edit-group {
+                margin-bottom: 1rem;
+
+                input {
+                    background-color: transparent;
+                    color: #6c757d;
+                    font-size: 0.85rem;
+                    padding: 0.6rem 0.8rem;
+                    border-radius: 5px;
+                    border: 1px solid #495057;
+                    transition: all 0.1s ease-in-out;
+                    outline: none;
+
+                    &:focus {
+                        border: 1px solid $almost-white;
+                    }
+                }
+
+                textarea {
+                    background-color: transparent;
+                    color: #6c757d;
+                    font-size: 0.9rem;
+                    line-height: 1.3;
+                    padding: 0.6rem 0.8rem;
+                    border-radius: 5px;
+                    max-width: calc(300px - 45px);
+                    min-width: calc(300px - 45px);
+                    min-height: 50px;
+                    max-height: 70px;
+                    border: 1px solid #495057;
+                    transition: all 0.1s ease-in-out;
+                    outline: none;
+
+                    &:focus {
+                        border: 1px solid $almost-white;
+                    }
+
+                    @media (min-width: 1000px) {
+                        max-width: calc(400px - 45px);
+                        min-width: calc(400px - 45px);
+                        min-height: 70px;
+                    }
+                }
+
+                .error {
+                    color: $red;
+                    font-size: 0.8rem;
+                    height: 0px;
+                    transform: scale(0);
+                    transform-origin: left;
+                    transition: transform $transition-traits;
+
+                    &.error-show {
+                        transform: scale(1);
+                        height: fit-content;
+                        margin-bottom: 1rem;
+                    }
+                }
+            }
+
+            // ==================================== Subtasks.
+            .subtasks-edit-group {
+                margin-bottom: 1rem;
+
+                .subtask-row {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    gap: 0.5rem;
+                    margin-bottom: 0.5rem;
+
+                    input {
+                        background-color: transparent;
+                        color: #6c757d;
+                        font-size: 0.85rem;
+                        padding: 0.6rem 0.8rem; 
+                        border: 1px solid #495057;
+                        border-radius: 5px;
+                        width: 100%;
+                        transition: all 0.1s ease-in-out;
+                        outline: none;
+    
+                        &:focus {
+                            border: 1px solid $almost-white;
+                        }
+                    }
+
+                    .delete-subtask-button {
+                        background-color: transparent;
+                        color: $medium-gray;
+                        font-size: 1.4rem;
+                        transition: all 0.2s ease-in-out;
+                        outline: none;
+                        &:focus,
+                        &:hover {
+                            color: $red;
+                        }
+                    }
+                }
+
+                .add-subtask-button {
+                    background-color: $almost-white;
+                    color: $dark-theme-purple;
+                    font-size: 0.8rem;
+                    font-weight: $main-font-bold;
+                    letter-spacing: 1px;
+                    padding: 0.6rem;
+                    border-radius: 50px;
+                    margin-top: 0.5rem;
+                    outline: none;
+                    transition: all 0.2s ease-in-out;
+                    cursor: pointer;
+
+                    &:focus,
+                    &:hover {
+                        background-color: $dark-theme-purple;
+                        color: $almost-white;
+                    }
+                }
+            }
+
+
+            // ==================================== Status.
+            .status-edit-group {
+                margin-bottom: 1.5rem;
+
+                select {
+                    background-color: $dark-grayish-blue;
+                    color: #dee2e6;
+                    font-size: 0.85rem;
+                    padding: 0.5rem;
+                    border: 1px solid #495057;
+                    border-radius: 5px;
+                    text-transform: capitalize;
+                    transition: all 0.1s ease-in-out;
+                    outline: none;
+
+                    &:focus {
+                        border: 1px solid $almost-white;
+                    }
+                }
+            }
+
+
+            // ==================================== Delete the task.
+            .delete-task-button {
+                position: absolute;
+                top: -42px;
+                right: 0;
+                background-color: transparent;
+                color: $almost-white;
+                font-size: 1.2rem;
+                cursor: pointer;
+                transition: all 0.2s ease-in-out;
+                outline: none;
+                &:focus,
+                &:hover {
+                    color: $red;
+                }
+            }
+
+
+            // ==================================== Submit changes.
+            .submit-button {
+                background-color: $dark-theme-purple;
+                color: $almost-white;
+                font-size: 0.8rem;
+                font-weight: $main-font-bold;
+                letter-spacing: 1px;
+                padding: 0.8rem;
+                border-radius: 50px;
+            }
+        }
 
         
         // ==================================== Light Theme.
         &.edit-task-container-light {
             background-color: $white;
+
+            .edit-task-from {
+                .edit-group {
+                    input {
+                        color: #495057;
+                        border: 1px solid #adb5bd;
+    
+                        &:focus {
+                            border: 1px solid $almost-white;
+                        }
+                    }
+    
+                    textarea {
+                        color: #495057;
+                        border: 1px solid #adb5bd;
+                    }
+                }
+
+                .subtasks-edit-group {
+                    .subtask-row {    
+                        input {
+                            color: #495057;
+                            border: 1px solid #adb5bd;
+        
+                            &:focus {
+                                border: 1px solid #6a6c6e;
+                            }
+                        }
+                    }
+    
+                    .add-subtask-button {
+                        background-color: transparent;
+                        color: $light-theme-purple;
+                        border: 1px solid #adb5bd;
+                    }
+                }
+
+                .status-edit-group {
+                    margin-bottom: 1.5rem;
+    
+                    select {
+                        background-color: $white;
+                        color: #495057;
+                        border: 1px solid #adb5bd;
+    
+                        &:focus {
+                            border: 1px solid #6a6c6e;
+                        }
+                    }
+                }
+
+                .delete-task-button {
+                    color: #848c96;
+                    &:focus,
+                    &:hover {
+                        color: $red;
+                    }
+                }
+
+                .submit-button {
+                    background-color: $light-theme-purple;
+                    color: $almost-white;
+                }
+
+            }
         }
     }
 }

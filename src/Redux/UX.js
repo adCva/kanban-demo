@@ -7,6 +7,7 @@ export const UX = createSlice({
         isSidebarHidden: false,
         activeBoardId: 0,
         activeBoardName: "Platform Launch",
+        isAddTaskPop: false,
         isDetailsPopOpen: false,
         isEditDetailsPopOpen: false,
         getDetailsForTask: null
@@ -61,10 +62,16 @@ export const UX = createSlice({
                 isEditDetailsPopOpen: false,
                 getDetailsForTask: null
             }
+        },
+        toggleAddTaskPop: (state) => {
+            return {
+                ...state,
+                isAddTaskPop: !state.isAddTaskPop
+            }
         }
     }
 })
 
-export const { changeViewMode, hideSidebar, changeActiveBoardId, openDetailsPop, updateDetailsForView, closeDetailsPop, openFullEditTaskPop, closeFullEditTaskPop } = UX.actions;
+export const { changeViewMode, hideSidebar, changeActiveBoardId, openDetailsPop, updateDetailsForView, closeDetailsPop, openFullEditTaskPop, closeFullEditTaskPop, toggleAddTaskPop } = UX.actions;
 
 export default UX.reducer;

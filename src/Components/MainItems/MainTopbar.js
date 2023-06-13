@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 // ===== Redux.
 import { useSelector, useDispatch } from 'react-redux';
+import { toggleAddTaskPop } from "../../Redux/UX";
 // ===== React Icons.
 import { IoIosAdd } from "react-icons/io";
 import { HiEllipsisVertical } from "react-icons/hi2";
@@ -43,7 +44,7 @@ function MainTopbar({darkTheme}) {
 
             <div className='topbar-buttons'>
                 {/* ===================== Add Task button. ===================== */}
-                <button className='topbar-add'><IoIosAdd /></button>
+                <button className='topbar-add' onClick={() => dispatch(toggleAddTaskPop())}><IoIosAdd /></button>
 
                 {/* ===================== Dropdown. ===================== */}
                 <div className='topbar-dropdown-wrapper' ref={dropdownRef} >

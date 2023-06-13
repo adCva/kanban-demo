@@ -19,6 +19,7 @@ function EditDetails({darkTheme}) {
 
     // ===== Local state.
     const [titleError, setTitleError] = useState(false);
+    const subtaskPlaceholder = ["e.g. Drik coffee.", "e.g. Cope with life absurdity.", "e.g. Stare into the abyss"];
 
     // ===== React Spring Transition.
     const transition = useTransition(editTaskActive, {
@@ -106,8 +107,8 @@ function EditDetails({darkTheme}) {
                                 {/* ===================== Title & Delete ===================== */}
                                 <div className='edit-group'>
                                     <label htmlFor='title'>Title</label>
-                                    <input type='text' value={getTaskDetails.task_title} id="title" name="title" onChange={(e) => dispatch(updateDetailsForView({newTitle: e.target.value}))} />
-                                    <p className={titleError ? "error error-show" : "error"} >Field required.</p>
+                                    <input type='text' defaultValue={getTaskDetails.task_title} id="title" name="title" onChange={(e) => dispatch(updateDetailsForView({newTitle: e.target.value}))} />
+                                    <p className={titleError ? "error error-show" : "error"} >Field required or too short.</p>
                                 </div>
 
                                 {/* ===================== Description Input ===================== */}
@@ -121,12 +122,12 @@ function EditDetails({darkTheme}) {
                                     <label>Subtasks</label>
                                     {getTaskDetails.subtasks.map((subtask, i) => (
                                             <div className='subtask-row' key={i} >
-                                                <input type="text" value={subtask.subtask_name} onChange={(e) => changeSubtaskInput(e, subtask.subtask_id)} />
-                                                <button type='button' onClick={() => deleteSubtask(subtask.subtask_id)}><MdClose /></button>
+                                                <input type="text" value={subtask.subtask_name} onChange={(e) => changeSubtaskInput(e, subtask.subtask_id)} placeholder={subtaskPlaceholder[Math.floor(Math.random() * subtaskPlaceholder.length)]} />
+                                                <button type='button' onClick={() => deleteSubtask(subtask.subtask_id)} className='delete-subtask-button'><MdClose /></button>
                                             </div>
                                         )
                                     )}
-                                    <button type='button' onClick={addSubTaskInput} >+ Add Subtask</button>
+                                    <button type='button' onClick={addSubTaskInput} className='add-subtask-button' >+ Add Subtask</button>
                                 </div>
 
                                 {/* ===================== Status ===================== */}
@@ -143,7 +144,7 @@ function EditDetails({darkTheme}) {
                                 <button type='button' className='delete-task-button' onClick={() => deleteThisTask(getTaskDetails.task_id)} ><MdOutlineDeleteOutline /></button>
 
                                 {/* ===================== Submit ===================== */}
-                                <button type='submit' className='submit-button' >Change</button>
+                                <button type='submit' className='submit-button' >Change Task</button>
 
                             </form>
                         </>

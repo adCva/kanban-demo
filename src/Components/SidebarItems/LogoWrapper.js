@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 // ===== Redux.
 import { useSelector, useDispatch } from 'react-redux';
+import { toggleAddTaskPop } from "../../Redux/UX";
 // ===== Components.
 import Logo from "../Logo";
 // ===== React Icons.
@@ -55,7 +56,7 @@ function LogoWrapper({isMobileCardOpen, onValueToggle, darkTheme }) {
             {/* ===================== Mobile specific. ===================== */}
             <div className='logo-mobile-btns'>
                 {/* ===================== Add Task Button (only on mobile). ===================== */}
-                <button className='logo-mobile-add'><IoIosAdd /></button>
+                <button className='logo-mobile-add' onClick={() => dispatch(toggleAddTaskPop())}><IoIosAdd /></button>
 
                 {/* ===================== Dropdown (only on mobile). ===================== */}
                 <div className='mobile-dropdown-wrapper' ref={mobilDropdownRef} >

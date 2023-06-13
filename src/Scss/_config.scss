@@ -1,7 +1,8 @@
 // ======= Typography.
-$main-font: 'Roboto Condensed', sans-serif;
-$main-font-light: 300;
+$main-font: 'Plus Jakarta Sans', sans-serif;
 $main-font-regular: 400;
+$main-font-medium: 500;
+$main-font-semi-bold: 600;
 $main-font-bold: 700;
 
 
@@ -60,7 +61,7 @@ $transition-traits: 0.25s ease-in-out;
 }
 
 @mixin absoluteParentComponent() {
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: rgba(0, 0, 0, 0.75);
     position: fixed;
     top: 0;
     bottom: 0;
@@ -79,7 +80,12 @@ $transition-traits: 0.25s ease-in-out;
     min-width: 250px;
     max-width: 300px;
     padding: 1.5rem;
-    border-radius: 10px;
+    border-radius: 5px;
+
+    @media (min-width: 1000px) {
+        min-width: 400px;
+        max-width: 400px;
+    }
 }
 
 
