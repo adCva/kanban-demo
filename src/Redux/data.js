@@ -140,6 +140,12 @@ export const data = createSlice({
                 tasks: [...updatedTasks]
             }
         },
+        addTask: (state, action) => {
+            return {
+                ...state,
+                tasks: [...state.tasks, action.payload.newTask]
+            }
+        },
         deleteTask: (state, action) => {
             const initialState = JSON.parse(JSON.stringify(state.tasks));
             const updatedTasks = initialState.filter(task => task.task_id !== action.payload.deleteWithId);
@@ -152,6 +158,6 @@ export const data = createSlice({
     }
 })
 
-export const { updateTask, updateSubtasks, updateTaskStatus, deleteTask } = data.actions;
+export const { updateTask, updateSubtasks, updateTaskStatus, addTask, deleteTask } = data.actions;
 
 export default data.reducer;

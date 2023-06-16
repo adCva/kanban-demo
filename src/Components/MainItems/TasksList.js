@@ -14,7 +14,6 @@ function TasksList({darkTheme}) {
     const tasks = useSelector((state) => state.data.tasks);
 
     // ===== Local state.
-    const [areThereTasks, setAreThereTasks] = useState(false);
     const [isAccordionExpanded, setIsAccordionExpanded] = useState([]);
 
     // ===== Open/Close accordion.
@@ -33,13 +32,12 @@ function TasksList({darkTheme}) {
 
 
     useEffect(() => {
-        setAreThereTasks(tasks.filter(task => task.task_parent_id === activeBoardId).length > 0);
         setIsAccordionExpanded([]);
     }, [activeBoardId]);
 
 
     return (
-        areThereTasks ? (
+        tasks.filter(task => task.task_parent_id === activeBoardId).length > 0 ? (
             <div className={darkTheme ? "tasks-wrapper" : "tasks-wrapper tasks-wrapper-light"} >
                 <div className='tasks-container'>
 
