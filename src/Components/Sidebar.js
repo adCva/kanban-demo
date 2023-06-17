@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useTransition, animated } from '@react-spring/web';
 // ===== Redux.
 import { useSelector, useDispatch } from 'react-redux';
-import { changeViewMode, hideSidebar, changeActiveBoardId } from "../Redux/UX";
+import { changeViewMode, hideSidebar, changeActiveBoardId, toggleNewBoardPop } from "../Redux/UX";
 // ===== React Icons.
 import { HiSun } from "react-icons/hi2";
 import { BsMoonStarsFill, BsClipboard2Plus, BsClipboard2Check, BsClipboard2 } from "react-icons/bs";
@@ -101,7 +101,7 @@ function Sidebar() {
                   )
                 })}
               </div>
-              <button className='new-board-btn' ><span><BsClipboard2Plus /></span> + Create New Board</button>
+              <button className='new-board-btn' onClick={() => dispatch(toggleNewBoardPop())}><span><BsClipboard2Plus /></span> + Create New Board</button>
             </div>
 
             {/* =========== Theme Btn Container =========== */}

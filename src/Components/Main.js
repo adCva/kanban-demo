@@ -7,6 +7,7 @@ import TasksList from './MainItems/TasksList';
 import AddTask from './AddTask';
 import TaskDetails from './MainItems/TaskDetails';
 import EditDetails from './MainItems/EditDetails';
+import NewBoard from './NewBoard';
 
 
 function Main() {
@@ -21,7 +22,7 @@ function Main() {
       <AddTask darkTheme={isDarkMode} />
       <TaskDetails darkTheme={isDarkMode} />
       <EditDetails darkTheme={isDarkMode} />
-
+      <NewBoard />
       
     </div>
   )

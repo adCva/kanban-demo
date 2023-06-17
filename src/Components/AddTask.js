@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useTransition, animated } from '@react-spring/web';
-import { toggleAddTaskPop } from "../Redux/UX";
 // ===== Redux.
 import { useSelector, useDispatch } from 'react-redux';
 import { addTask } from "../Redux/data";
+import { toggleAddTaskPop } from "../Redux/UX";
 // ===== React Icons.
 import { MdClose } from "react-icons/md";
 

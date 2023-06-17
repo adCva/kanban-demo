@@ -1,0 +1,12 @@
+.new-board-wrapper {
+    @include absoluteParentComponent;
+
+    .new-board-container {
+        @include absoluteChildComponent;
+        background-color: $dark-grayish-blue;
+
+        &.new-board-container-light {
+            background-color: $white;
+        }
+    }
+}
