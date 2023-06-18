@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 // ===== Redux.
 import { useSelector, useDispatch } from 'react-redux';
-import { toggleAddTaskPop } from "../../Redux/UX";
+import { toggleAddTaskPop, toggleEditBoardPop } from "../../Redux/UX";
 // ===== React Icons.
 import { IoIosAdd } from "react-icons/io";
 import { HiEllipsisVertical } from "react-icons/hi2";
@@ -50,7 +50,7 @@ function MainTopbar({darkTheme}) {
                 <div className='topbar-dropdown-wrapper' ref={dropdownRef} >
                     <button className='topbar-options-btn' onClick={() => setIsDropdown(!isDropdown)} ><HiEllipsisVertical /></button>
                     <div className={isDropdown ? "topbar-dropdown-container" : "topbar-dropdown-container topbar-dropdown-container-hide"} >
-                        <button className='edit-board-btn' ><BiEdit /> Edit</button>
+                        <button className='edit-board-btn' onClick={() => dispatch(toggleEditBoardPop())} ><BiEdit /> Edit</button>
                         <button className='delete-board-btn' ><TiDelete /> Delete</button>
                     </div>
                 </div>

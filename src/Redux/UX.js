@@ -11,7 +11,8 @@ export const UX = createSlice({
         isDetailsPopOpen: false,
         isEditDetailsPopOpen: false,
         getDetailsForTask: null,
-        newBoardPop: false
+        newBoardPop: false,
+        editBoardPop: false
     },
 
     reducers: {
@@ -75,10 +76,16 @@ export const UX = createSlice({
                 ...state,
                 newBoardPop: !state.newBoardPop
             }
+        },
+        toggleEditBoardPop: (state) => {
+            return {
+                ...state,
+                editBoardPop: !state.editBoardPop
+            }
         }
     }
 })
 
-export const { changeViewMode, hideSidebar, changeActiveBoardId, openDetailsPop, updateDetailsForView, closeDetailsPop, openFullEditTaskPop, closeFullEditTaskPop, toggleAddTaskPop, toggleNewBoardPop } = UX.actions;
+export const { changeViewMode, hideSidebar, changeActiveBoardId, openDetailsPop, updateDetailsForView, closeDetailsPop, openFullEditTaskPop, closeFullEditTaskPop, toggleAddTaskPop, toggleNewBoardPop, toggleEditBoardPop } = UX.actions;
 
 export default UX.reducer;

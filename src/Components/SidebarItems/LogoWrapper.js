@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 // ===== Redux.
 import { useSelector, useDispatch } from 'react-redux';
-import { toggleAddTaskPop } from "../../Redux/UX";
+import { toggleAddTaskPop, toggleEditBoardPop } from "../../Redux/UX";
 // ===== Components.
 import Logo from "../Logo";
 // ===== React Icons.
@@ -62,7 +62,7 @@ function LogoWrapper({isMobileCardOpen, onValueToggle, darkTheme }) {
                 <div className='mobile-dropdown-wrapper' ref={mobilDropdownRef} >
                     <button className='board-options-btn' onClick={() => setIsDropdown(!isDropdown)}><HiEllipsisVertical /></button>
                     <div className={isDropdown ? "dropdown-container" : "dropdown-container dropdown-container-hide"} >
-                        <button className='edit-board-btn'><span><BiEdit /></span> Edit Board</button>
+                        <button className='edit-board-btn' onClick={() => dispatch(toggleEditBoardPop())} ><span><BiEdit /></span> Edit Board</button>
                         <button className='delete-board-btn'><span><MdOutlineDeleteOutline /></span> Delete Board</button>
                     </div>
                 </div>

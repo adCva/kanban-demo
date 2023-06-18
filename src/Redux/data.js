@@ -154,10 +154,16 @@ export const data = createSlice({
                 ...state,
                 tasks: [...updatedTasks]
             }
+        },
+        addBoard: (state, action) => {
+            return {
+                ...state,
+                boards: [...state.boards, action.payload.newBoard]
+            }
         }
     }
 })
 
-export const { updateTask, updateSubtasks, updateTaskStatus, addTask, deleteTask } = data.actions;
+export const { updateTask, updateSubtasks, updateTaskStatus, addTask, deleteTask, addBoard } = data.actions;
 
 export default data.reducer;

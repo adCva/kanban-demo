@@ -1,0 +1,12 @@
+.edit-board-wrapper {
+    @include absoluteParentComponent;
+
+    .edit-board-container {
+        @include absoluteChildComponent;
+        background-color: $dark-grayish-blue;
+
+        &.edit-board-container-light {
+            background-color: $white;
+        }
+    }
+}
