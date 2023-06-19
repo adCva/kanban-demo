@@ -30,6 +30,17 @@ function EditBoard() {
 
                     <form className='edit-board-form' onSubmit={handleSubmit} >
 
+                        <div className='form-group'>
+                            <label htmlFor='title'>Name</label>
+                            <input type='text' id='title' />
+                        </div>
+
+                        <div className='edit-statuses-group'>
+
+                        </div>
+
+                        <button type='submit'>Change Board</button>
+
                     </form>
 
                 </div>
