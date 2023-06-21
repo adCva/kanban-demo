@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useTransition, animated } from '@react-spring/web';
+import { toggleEditBoardPop } from "../Redux/UX";
 // ===== Redux.
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -10,8 +11,34 @@ function EditBoard() {
     const darkTheme = useSelector((state) => state.ux.darkMode);
     const isOpen = useSelector((state) => state.ux.editBoardPop);
     const activeBoard = useSelector((state) => state.ux.activeBoardId);
-    const allAvailabelStatusesForBoard = useSelector((state) => state.data.boards.filter(el => el.board_id === activeBoard)[0].board_avaiableStatuses);
+    const allAvailabelStatusesForBoard = useSelector((state) => state.data.boards.filter(el => el.board_id === activeBoard)[0]);
     const areThereTasksForStatusAndActiveBoard = useSelector((state) => state.data.tasks.filter(el => el.task_parent_id === activeBoard));
+
+    // ===== Helper.
+    let containsSubtasks  = {};
+    areThereTasksForStatusAndActiveBoard.forEach(task => {
+        const status = task.task_status
+        containsSubtasks[status] = (containsSubtasks[status] || 0) + 1;
+    });
+
+    // ===== Local state.
+    const [status, setStatus] = useState();
+
+    // ===== Local state.
+    const selectStatusForDeletion = (index) => {
+        let tempArray = [...status];
+
+        if (areThereTasksForStatusAndActiveBoard.filter(el => el.task_status === tempArray[index].name) .length > 0) {
+            tempArray[index].hasError = true;
+            setStatus(tempArray)
+        } else if (tempArray[index].isActive === false) {
+            tempArray[index].isActive  = true;
+            setStatus(tempArray)
+        } else {
+            tempArray[index].isActive = false;
+            setStatus(tempArray)
+        }
+    };
 
     // ===== React Spring Transition.
     const transition = useTransition(isOpen, {
@@ -20,35 +47,56 @@ function EditBoard() {
         leave: { opacity: 0 },
     });
 
+    // ===== Handle Form Submit.
     const handleSubmit = (e) => {
         e.preventDefault();
     };
+
+    // ===== Close pop on outside click.
+    const closePopOutsideClick = (e) => {
+        if (isOpen && e.target.className === "edit-board-wrapper") {
+          dispatch(toggleEditBoardPop());
+        }
+    }
+
+    useEffect(() => {
+        setStatus(allAvailabelStatusesForBoard.board_avaiableStatuses.map(el => {
+            return {
+                name: el,
+                isActive: true,
+                hasError: false,
+                containsSubtasksWithThisStatus: containsSubtasks[el] || 0
+            }
+        }));
+
+        document.addEventListener("click", closePopOutsideClick);
+
+        return () => {
+            document.removeEventListener("click", closePopOutsideClick);
+        }
+    }, [allAvailabelStatusesForBoard]);
 
     return (
         transition((style, isOpen) => isOpen ? (
             <animated.div style={style} className="edit-board-wrapper" >
                 <div className={darkTheme ? "edit-board-container" : "edit-board-container edit-board-container-light"} >
 
-                    <h1 className='component-title' onClick={() => console.log(areThereTasksForStatusAndActiveBoard)}>Edit Board</h1>
+                    <h1 className='component-title' onClick={() => console.log(allAvailabelStatusesForBoard)}>Edit Board</h1>
 
                     <form className='edit-board-form' onSubmit={handleSubmit} >
 
                         <div className='form-group'>
                             <label htmlFor='title'>Name</label>
-                            <input type='text' id='title' />
+                            <input type='text' id='title' value={allAvailabelStatusesForBoard.board_name} />
                         </div>
 
                         <div className='edit-statuses-group'>
                             <label>Delete Status</label>
-                            {allAvailabelStatusesForBoard.map((status, i) => areThereTasksForStatusAndActiveBoard.filter(task => task.task_status === status) ? (
+                            {status.map((el, i) => (
                                 <div key={i}>
-                                    <p>Delete</p>
-                                    <input type='text' value={status} />
-                                </div>
-                            ) : (
-                                <div>
-                                    <p>Not Del</p>
-                                    <input type='text' value={status} />
+                                    {el.containsSubtasksWithThisStatus > 0 ? <p>X</p> : <input type='checkbox' id={`checkbox-${el.name}`} onChange={() => selectStatusForDeletion(i)} /> }
+                                    {!el.isActive ? <del>{el.name}</del> : <label htmlFor={`checkbox-${el.name}`}>{el.name}</label>}
+                                    {el.containsSubtasksWithThisStatus > 0 ? <p>This status has active subtasks. Please delete them first.</p> : null }
                                 </div>
                             ))}
                         </div>
