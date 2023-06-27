@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useTransition, animated } from '@react-spring/web';
 // ===== Redux.
 import { useSelector, useDispatch } from 'react-redux';
-import { toggleNewBoardPop } from "../Redux/UX";
+import { toggleNewBoardPop, changeActiveBoardId } from "../Redux/UX";
 import { addBoard } from "../Redux/data";
 
 function NewBoard() {
@@ -12,6 +12,7 @@ function NewBoard() {
     const darkTheme = useSelector((state) => state.ux.darkMode);
     const isOpen = useSelector((state) => state.ux.newBoardPop);
     const boards = useSelector((state) => state.data.boards);
+    const activeBoardId = useSelector((state) => state.ux.activeBoardId);
 
     // ===== Local state.
     const [formData, setFormData] = useState({
@@ -111,6 +112,10 @@ function NewBoard() {
 
         dispatch(addBoard({newBoard: newBoardData}));
         dispatch(toggleNewBoardPop());
+
+        if (activeBoardId === null) {
+            dispatch(changeActiveBoardId({newId: biggestBoardId + 1, newName: formData.title}));
+        }
 
         setFormData({title: "", customStatus: [], allStatuses: []});
     };

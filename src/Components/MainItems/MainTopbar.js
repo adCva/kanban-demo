@@ -44,14 +44,28 @@ function MainTopbar({darkTheme}) {
 
             <div className='topbar-buttons'>
                 {/* ===================== Add Task button. ===================== */}
-                <button className='topbar-add' onClick={() => dispatch(toggleAddTaskPop())}><IoIosAdd /></button>
+                {activeBoardName === "No Board" ? (
+                    <button className='topbar-add topbar-add-disabled'><IoIosAdd /></button>
+                ) : (
+                    <button className='topbar-add' onClick={() => dispatch(toggleAddTaskPop())}><IoIosAdd /></button>
+                )}
+                
 
                 {/* ===================== Dropdown. ===================== */}
                 <div className='topbar-dropdown-wrapper' ref={dropdownRef} >
                     <button className='topbar-options-btn' onClick={() => setIsDropdown(!isDropdown)} ><HiEllipsisVertical /></button>
                     <div className={isDropdown ? "topbar-dropdown-container" : "topbar-dropdown-container topbar-dropdown-container-hide"} >
-                        <button className='edit-board-btn' onClick={() => dispatch(toggleEditBoardPop())} ><BiEdit /> Edit</button>
-                        <button className='delete-board-btn' onClick={() => dispatch(toggleDeleteBoardPop())} ><TiDelete /> Delete</button>
+                        {activeBoardName === "No Board" ? (
+                            <>
+                                <button className='edit-board-btn'><BiEdit /> Edit</button>
+                                <button className='delete-board-btn'><TiDelete /> Delete</button>
+                            </>         
+                        ) : (
+                            <>
+                                <button className='edit-board-btn' onClick={() => dispatch(toggleEditBoardPop())} ><BiEdit /> Edit</button>
+                                <button className='delete-board-btn' onClick={() => dispatch(toggleDeleteBoardPop())} ><TiDelete /> Delete</button>
+                            </>
+                        )}
                     </div>
                 </div>
 

@@ -24,3 +24,16 @@
         }
     }
 }
+
+.new-column-wrapper {
+    @include absoluteParentComponent;
+
+    .new-column-container {
+        @include absoluteChildComponent;
+        background-color: $dark-grayish-blue;
+
+        &.new-column-container-light {
+            background-color: $white;
+        }
+    }
+}

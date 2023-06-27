@@ -78,7 +78,7 @@ function AddTask({darkTheme}) {
   // ===== Form Submit.
   const handleSubmit = (e) => {
     e.preventDefault();
-    const biggestTaskId = tasks.reduce((prev, current) => { return (current.task_id > prev.task_id) ? current : prev }).task_id;
+    const biggestTaskId = tasks.length === 0 ? 0 : tasks.reduce((prev, current) => { return (current.task_id > prev.task_id) ? current : prev }).task_id;
 
     dispatch(addTask({newTask: {
       task_id: biggestTaskId + 1,

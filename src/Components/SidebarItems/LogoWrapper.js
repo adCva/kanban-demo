@@ -56,14 +56,27 @@ function LogoWrapper({isMobileCardOpen, onValueToggle, darkTheme }) {
             {/* ===================== Mobile specific. ===================== */}
             <div className='logo-mobile-btns'>
                 {/* ===================== Add Task Button (only on mobile). ===================== */}
-                <button className='logo-mobile-add' onClick={() => dispatch(toggleAddTaskPop())}><IoIosAdd /></button>
+                {activeBoardName === "No Board" ? (
+                    <button className='topbar-add topbar-add-disabled'><IoIosAdd /></button>
+                ) : (
+                    <button className='logo-mobile-add' onClick={() => dispatch(toggleAddTaskPop())}><IoIosAdd /></button>
+                )}
 
                 {/* ===================== Dropdown (only on mobile). ===================== */}
                 <div className='mobile-dropdown-wrapper' ref={mobilDropdownRef} >
                     <button className='board-options-btn' onClick={() => setIsDropdown(!isDropdown)}><HiEllipsisVertical /></button>
                     <div className={isDropdown ? "dropdown-container" : "dropdown-container dropdown-container-hide"} >
-                        <button className='edit-board-btn' onClick={() => dispatch(toggleEditBoardPop())} ><span><BiEdit /></span> Edit Board</button>
-                        <button className='delete-board-btn' onClick={() => dispatch(toggleDeleteBoardPop())} ><span><MdOutlineDeleteOutline /></span> Delete Board</button>
+                    {activeBoardName === "No Board" ? (
+                            <>
+                                <button className='edit-board-btn'><span><BiEdit /></span> Edit Board</button>
+                                <button className='delete-board-btn'><span><MdOutlineDeleteOutline /></span> Delete Board</button>
+                            </>         
+                        ) : (
+                            <>
+                                <button className='edit-board-btn' onClick={() => dispatch(toggleEditBoardPop())} ><span><BiEdit /></span> Edit Board</button>
+                                <button className='delete-board-btn' onClick={() => dispatch(toggleDeleteBoardPop())} ><span><MdOutlineDeleteOutline /></span> Delete Board</button>
+                            </>
+                        )}
                     </div>
                 </div>
             </div>

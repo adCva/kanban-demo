@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 // ===== Redux.
 import { useSelector, useDispatch } from 'react-redux';
-import { openDetailsPop } from "../../Redux/UX";
+import { openDetailsPop, openNewColumnPop } from "../../Redux/UX";
 // ===== Components.
 import EmptyBoard from './EmptyBoard';
 
@@ -61,7 +61,7 @@ function TasksList({darkTheme}) {
                     </div>
 
                     {/* ===================== New Column Button ===================== */}
-                    <button className='add-column-btn'>+ New Column</button>
+                    <button className='add-column-btn' onClick={() => dispatch(openNewColumnPop())} >+ New Column</button>
 
                 </div>
 

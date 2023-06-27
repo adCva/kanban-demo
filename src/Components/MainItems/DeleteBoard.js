@@ -22,7 +22,9 @@ function DeleteBoard() {
     });
 
     const confirmDelete = () => {
+        const newBoardDetails = boards.length > 0 ? boards.filter(el => el.board_id !== activeBoardId)[0] : null
         dispatch(deleteBoard({deleteId: activeBoardId}));
+        dispatch(changeActiveBoardId({newId: newBoardDetails ? newBoardDetails.board_id : null, newName: newBoardDetails ? newBoardDetails.board_name : "No Board"}));
         dispatch(toggleDeleteBoardPop());
     };
 

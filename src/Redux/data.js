@@ -191,10 +191,27 @@ export const data = createSlice({
                 boards: initialBoardsState.filter(board => board.board_id !== action.payload.deleteId),
                 tasks: initialTasksState.filter(task => task.task_parent_id !== action.payload.deleteId)
             }
+        },
+        addNewStatusColumn: (state, action) => {
+            const initialBoardsState = JSON.parse(JSON.stringify(state.boards));
+            const resault = initialBoardsState.map(board => {
+                if (board.board_id === action.payload.currentId) {
+                    return {
+                        ...board,
+                        board_avaiableStatuses: [...board.board_avaiableStatuses, action.payload.newStatus]
+                    }
+                }
+                return board
+            })
+
+            return {
+                ...state,
+                boards: resault
+            }
         }
     }
 })
 
-export const { updateTask, updateSubtasks, updateTaskStatus, addTask, deleteTask, addBoard, editBoard, deleteBoard } = data.actions;
+export const { updateTask, updateSubtasks, updateTaskStatus, addTask, deleteTask, addBoard, editBoard, deleteBoard, addNewStatusColumn } = data.actions;
 
 export default data.reducer;
