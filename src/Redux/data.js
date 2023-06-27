@@ -160,10 +160,41 @@ export const data = createSlice({
                 ...state,
                 boards: [...state.boards, action.payload.newBoard]
             }
+        },
+        editBoard: (state, action) => {
+            const initialBoardsState = JSON.parse(JSON.stringify(state.boards));
+
+            const resault = initialBoardsState.map(board => {
+                if (board.board_id === action.payload.currentBoard) {
+                    return {
+                        ...board,
+                        board_name: action.payload.boardName,
+                        board_avaiableStatuses: action.payload.editedStatuses.length === 0 ? ["todo"] : action.payload.editedStatuses
+                    }
+                }
+                return board;
+            });
+
+            return {
+                ...state,
+                boards: resault
+            }
+        },
+        deleteBoard: (state, action) => {
+            const initialBoardsState = JSON.parse(JSON.stringify(state.boards));
+            const initialTasksState = JSON.parse(JSON.stringify(state.tasks));
+
+            const newBoardsArray = initialBoardsState.filter(board => board.board_id !== action.payload.deleteId);
+
+            return {
+                ...state,
+                boards: initialBoardsState.filter(board => board.board_id !== action.payload.deleteId),
+                tasks: initialTasksState.filter(task => task.task_parent_id !== action.payload.deleteId)
+            }
         }
     }
 })
 
-export const { updateTask, updateSubtasks, updateTaskStatus, addTask, deleteTask, addBoard } = data.actions;
+export const { updateTask, updateSubtasks, updateTaskStatus, addTask, deleteTask, addBoard, editBoard, deleteBoard } = data.actions;
 
 export default data.reducer;

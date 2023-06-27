@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useTransition, animated } from '@react-spring/web';
 import { toggleEditBoardPop } from "../Redux/UX";
+import { editBoard } from "../Redux/data";
 // ===== Redux.
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -50,6 +51,21 @@ function EditBoard() {
     // ===== Handle Form Submit.
     const handleSubmit = (e) => {
         e.preventDefault();
+
+        const statuses = status.reduce((acc, el) => {
+            if (el.isActive) {
+                acc.push(el.name);
+            }
+            return acc
+        }, []);
+
+        dispatch(editBoard({
+            currentBoard: activeBoard,
+            boardName: e.target.title.value,
+            editedStatuses: statuses
+        }));
+
+        dispatch(toggleEditBoardPop());
     };
 
     // ===== Close pop on outside click.
@@ -60,21 +76,21 @@ function EditBoard() {
     }
 
     useEffect(() => {
-        setStatus(allAvailabelStatusesForBoard.board_avaiableStatuses.map(el => {
+        setStatus(allAvailabelStatusesForBoard ? allAvailabelStatusesForBoard.board_avaiableStatuses.map(el => {
             return {
                 name: el,
                 isActive: true,
                 hasError: false,
                 containsSubtasksWithThisStatus: containsSubtasks[el] || 0
             }
-        }));
+        }) : null);
 
         document.addEventListener("click", closePopOutsideClick);
 
         return () => {
             document.removeEventListener("click", closePopOutsideClick);
         }
-    }, [allAvailabelStatusesForBoard]);
+    }, [allAvailabelStatusesForBoard, isOpen]);
 
     return (
         transition((style, isOpen) => isOpen ? (
@@ -87,7 +103,7 @@ function EditBoard() {
 
                         <div className='form-group'>
                             <label htmlFor='title'>Name</label>
-                            <input type='text' id='title' value={allAvailabelStatusesForBoard.board_name} />
+                            <input type='text' id='title' name='title' defaultValue={allAvailabelStatusesForBoard.board_name} />
                         </div>
 
                         <div className='edit-statuses-group'>

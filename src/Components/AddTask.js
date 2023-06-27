@@ -14,7 +14,7 @@ function AddTask({darkTheme}) {
   const isOpen = useSelector((state) => state.ux.isAddTaskPop);
   const activeBoard = useSelector((state) => state.ux.activeBoardId);
   const board = useSelector((state) => state.data.boards.filter(board => board.board_id === activeBoard));
-  const biggestTaskId = useSelector((state) => state.data.tasks.reduce((prev, current) => { return (current.task_id > prev.task_id) ? current : prev }).task_id);
+  const tasks = useSelector((state) => state.data.tasks);
 
   // ===== Local state.
   const [title, setTitle] = useState("");
@@ -22,6 +22,7 @@ function AddTask({darkTheme}) {
   const [subtasks, setSubtasks] = useState([]);
   const [subtaskId, setSubtasksId] = useState(0);
   const [status, setStatus] = useState("todo");
+
 
   // ===== React Spring Transition.
   const transition = useTransition(isOpen, {
@@ -77,6 +78,7 @@ function AddTask({darkTheme}) {
   // ===== Form Submit.
   const handleSubmit = (e) => {
     e.preventDefault();
+    const biggestTaskId = tasks.reduce((prev, current) => { return (current.task_id > prev.task_id) ? current : prev }).task_id;
 
     dispatch(addTask({newTask: {
       task_id: biggestTaskId + 1,

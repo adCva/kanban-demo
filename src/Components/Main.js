@@ -9,6 +9,7 @@ import TaskDetails from './MainItems/TaskDetails';
 import EditDetails from './MainItems/EditDetails';
 import NewBoard from './NewBoard';
 import EditBoard from './EditBoard';
+import DeleteBoard from './MainItems/DeleteBoard';
 
 
 function Main() {
@@ -25,6 +26,7 @@ function Main() {
       <EditDetails darkTheme={isDarkMode} />
       <NewBoard />
       <EditBoard />
+      <DeleteBoard />
       
     </div>
   )

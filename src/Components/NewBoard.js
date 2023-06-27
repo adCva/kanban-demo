@@ -11,7 +11,7 @@ function NewBoard() {
     // ===== Redux state.
     const darkTheme = useSelector((state) => state.ux.darkMode);
     const isOpen = useSelector((state) => state.ux.newBoardPop);
-    const biggestBoardId = useSelector((state) => state.data.boards.reduce((prev, current) => { return (current.board_id > prev.board_id) ? current : prev }).board_id);
+    const boards = useSelector((state) => state.data.boards);
 
     // ===== Local state.
     const [formData, setFormData] = useState({
@@ -100,6 +100,8 @@ function NewBoard() {
     // ===== Handle form submit.
     const handleNewBoardSubmit = (e) => {
         e.preventDefault();
+
+        const biggestBoardId = boards.length === 0 ? 0 : boards.reduce((prev, current) => { return (current.board_id > prev.board_id) ? current : prev }).board_id
 
         const newBoardData = {
             board_id: biggestBoardId + 1,

@@ -10,3 +10,17 @@
         }
     }
 }
+
+
+.delete-barod-wrapper{
+    @include absoluteParentComponent;
+
+    .delete-barod-container {
+        @include absoluteChildComponent;
+        background-color: $dark-grayish-blue;
+
+        &.delete-barod-container-light {
+            background-color: $white;
+        }
+    }
+}

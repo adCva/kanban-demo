@@ -18,6 +18,8 @@ function TasksList({darkTheme}) {
 
     // ===== Open/Close accordion.
     const toggleAccordion = (status) => {
+        console.log(tasks);
+        
         if (isAccordionExpanded.includes(status)) {
             setIsAccordionExpanded(isAccordionExpanded.filter(element => element !== status));
         } else {

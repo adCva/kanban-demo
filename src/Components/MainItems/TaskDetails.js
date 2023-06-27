@@ -3,7 +3,7 @@ import { useTransition, animated } from '@react-spring/web';
 // ===== Redux.
 import { useSelector, useDispatch } from 'react-redux';
 import { updateDetailsForView, closeDetailsPop, openFullEditTaskPop } from "../../Redux/UX";
-import { updateSubtasks, updateTaskStatus } from "../../Redux/data";
+import { updateSubtasks, updateTaskStatus, deleteTask } from "../../Redux/data";
 // ===== React Icons.
 import { HiOutlineEllipsisVertical } from "react-icons/hi2";
 import { BiEdit } from "react-icons/bi";
@@ -77,6 +77,11 @@ function TaskDetails({darkTheme}) {
         dispatch(openFullEditTaskPop());
     };
 
+    const deleteThisTask = (id) => {
+        dispatch(deleteTask({deleteWithId: id}));
+        dispatch(closeDetailsPop());
+    };
+
 
     useEffect(() => {
         document.addEventListener("click", closeTaskDetailPop);
@@ -104,7 +109,7 @@ function TaskDetails({darkTheme}) {
                                 <button className='open-menu-btn' onClick={() => setIsDropdown(true)} ><HiOutlineEllipsisVertical /></button>
                                 <div className={isDropdown ? "dropdown-menu" : "dropdown-menu dropdown-menu-hide"} >
                                     <button className='edit-board-btn' onClick={openFullEdit} ><BiEdit /> Edit</button>
-                                    <button className='delete-board-btn' ><TiDelete /> Delete</button>
+                                    <button className='delete-board-btn' onClick={() => deleteThisTask(getTaskDetails.task_id)} ><TiDelete /> Delete</button>
                                 </div>
                             </div>
                         </div>
