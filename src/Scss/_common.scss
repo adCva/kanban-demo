@@ -1,0 +1,12 @@
+.pop-up-wrapper {
+    @include absoluteParentComponent;
+
+    .pop-up-container {
+        @include absoluteChildComponent;
+        background-color: $dark-grayish-blue;
+
+        &.pop-up-container-light {
+            background-color: $white;
+        }
+    }
+}
