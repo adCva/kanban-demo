@@ -37,8 +37,8 @@ function NewColumn() {
 
     return (
         transition((style, isNewColumnPop) => isNewColumnPop ? (
-            <animated.div style={style} className="new-column-wrapper" >
-                <div className={darkTheme ? "new-column-container" : "new-column-container new-column-container-light"}>
+            <animated.div style={style} className="pop-up-wrapper" >
+                <div className={darkTheme ? "pop-up-container" : "pop-up-container pop-up-container-light"}>
                     <form onSubmit={handleSubmit}>
                         <div className='form-group'>
                             <label>Status Name</label>

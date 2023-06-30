@@ -94,8 +94,8 @@ function EditBoard() {
 
     return (
         transition((style, isOpen) => isOpen ? (
-            <animated.div style={style} className="edit-board-wrapper" >
-                <div className={darkTheme ? "edit-board-container" : "edit-board-container edit-board-container-light"} >
+            <animated.div style={style} className="pop-up-wrapper" >
+                <div className={darkTheme ? "pop-up-container" : "pop-up-container pop-up-container-light"} >
 
                     <h1 className='component-title' onClick={() => console.log(allAvailabelStatusesForBoard)}>Edit Board</h1>
 

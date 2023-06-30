@@ -94,8 +94,8 @@ function EditDetails({darkTheme}) {
 
     return (
         transition((style, editTaskActive) => editTaskActive ? (
-            <animated.div style={style} className="edit-task-wrapper">
-                <div className={darkTheme ? "edit-task-container" : "edit-task-container edit-task-container-light"} >
+            <animated.div style={style} className="pop-up-wrapper">
+                <div className={darkTheme ? "pop-up-container" : "pop-up-container pop-up-container-light"} >
 
                     {getTaskDetails ? (
                         <>

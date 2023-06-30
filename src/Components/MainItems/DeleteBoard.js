@@ -35,8 +35,8 @@ function DeleteBoard() {
 
     return (
         transition((style, deleteBoardActive) => deleteBoardActive ? (
-            <animated.div style={style} className="delete-barod-wrapper" >
-                <div className={darkTheme ? "delete-barod-container" : "delete-barod-container delete-barod-container-light"}>
+            <animated.div style={style} className="pop-up-wrapper" >
+                <div className={darkTheme ? "pop-up-container" : "pop-up-container pop-up-container-light"}>
                     <h1>Are you sure you want to delete this board, all tasks, completed or otherwise will be deleted too.</h1>
                     <div className='delete-btns-container'>
                         <button onClick={confirmDelete}>Confirm</button>

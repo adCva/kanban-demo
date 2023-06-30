@@ -96,10 +96,10 @@ function TaskDetails({darkTheme}) {
 
     return (
         transition((style, isDetailsPopOpen) => isDetailsPopOpen ? (
-            <animated.div style={style} className="task-details-wrapper">
+            <animated.div style={style} className="pop-up-wrapper">
 
                 {getTaskDetails ? (
-                    <div className={darkTheme ? "task-details-container" : "task-details-container task-details-container-light"}>
+                    <div className={darkTheme ? "pop-up-container" : "pop-up-container pop-up-container-light"}>
 
                         {/* ===================== Title & Dropdown ===================== */}
                         <div className='task-title-and-menu'>

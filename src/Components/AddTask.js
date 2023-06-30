@@ -105,8 +105,8 @@ function AddTask({darkTheme}) {
 
   return (
     transition((style, isOpen) => isOpen ? (
-      <animated.div style={style} className="add-task-wrapper" >
-          <div className={darkTheme ? "add-task-container" : "add-task-container add-task-container-light"} >
+      <animated.div style={style} className="pop-up-wrapper" >
+          <div className={darkTheme ? "pop-up-container" : "pop-up-container pop-up-container-light"} >
 
             <h1 className='component-title'>Add New Task</h1>
 

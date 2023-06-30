@@ -131,8 +131,8 @@ function NewBoard() {
 
     return (
         transition((style, isOpen) => isOpen ? (
-            <animated.div style={style} className="new-board-wrapper" >
-                <div className={darkTheme ? "new-board-container" : "new-board-container new-board-container-light"} >
+            <animated.div style={style} className="pop-up-wrapper" >
+                <div className={darkTheme ? "pop-up-container" : "pop-up-container pop-up-container-light"} >
                     <h1>Create New Board</h1>
 
                     <form className='new-board-form' onSubmit={handleNewBoardSubmit}>
